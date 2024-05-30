@@ -32,7 +32,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
     // use your own OpenAI API Key
     // OPENAI_API_KEY = Your own OpenAI API Key
     final String apiKey =  dotenv.env['OPENAI_API_KEY'] ?? "";
-    final uri = Uri.parse('https://api.openai.com/v1/chat/completions');
+    final uri = Uri.parse('');
 
     final headers = {
       'Content-Type': 'application/json',
