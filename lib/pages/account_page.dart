@@ -82,8 +82,8 @@ class _AccountPageState extends State<AccountPage> {
             SizedBox(height: 20),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                primary: const Color(0xFFFF6C37), // This is the background color
-                onPrimary: Colors.white, // This is the color of the text and icon
+                backgroundColor: const Color(0xFFFF6C37), // This is the background color
+                foregroundColor: Colors.white, // This is the color of the text and icon
               ),
               onPressed: _editProfile,
               child: Text('Edit Profile'),

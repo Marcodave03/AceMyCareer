@@ -384,12 +384,10 @@ void _setupTts() {
                 decoration: BoxDecoration(
                     color: Colors.red, borderRadius: BorderRadius.circular(50)),
                 child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    primary: Color(0xFFC4084F),
-                    // This is the background color
-                    onPrimary:
-                        Colors.white, // This is the color of the text and icon
-                  ),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0xFFC4084F), // This is the background color
+                      foregroundColor: Colors.white, // This is the color of the text and icon
+                    ),
                   onPressed: () {
                     // Show loading indicator
                     // Navigate to the Cover Letter Feedback Page with the feedback
