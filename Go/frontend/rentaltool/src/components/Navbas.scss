@@ -1,0 +1,56 @@
+@import "src/utils/colors.scss";
+
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+.navbar-side {
+    position:fixed;
+    width:90px;
+    height: 100%;
+    background-color: $color-light2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    &.active {
+        width: 300px;
+    }
+
+	.navbar-header {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;;
+
+		img {
+			height: 70px;
+			width: 70px;
+			object-fit: cover;
+		}
+
+		.navbar-items {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;;
+		}
+
+	}
+
+	.navbar-items {
+		list-style-type: none;
+	}
+
+	.navbar-bottom {
+
+		ul {
+			list-style-type: none;
+		}
+	}
+}
+
+
+
