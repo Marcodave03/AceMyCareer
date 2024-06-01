@@ -1,2 +1,5 @@
 
-node_modelues/
+node_modules/
+
+Backend/bin/*
+
