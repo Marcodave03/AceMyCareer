@@ -2,8 +2,10 @@ package users
 
 import (
 	"database/sql"
+	"encoding/json"
 	"net/http"
 
+	"github.com/Marcodave03/AceMyCareer/backend/src/api/utils"
 	_ "github.com/lib/pq"
 )
 
@@ -21,7 +23,7 @@ func CreateUserHandler(db *sql.DB) *userHandler {
 func (s *userHandler) HandleUsers(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case http.MethodGet:
-		handleUserGet(w, r, s.DB)
+		handleUserGet(w, r, s.DB) // gets all users
 		break
 	case http.MethodPost:
 		handleUserPost(w, r, s.DB)
@@ -36,11 +38,40 @@ func (s *userHandler) HandleUsers(w http.ResponseWriter, r *http.Request) {
 }
 
 func handleUserGet(w http.ResponseWriter, r *http.Request, db *sql.DB) {
-
+    allUsers, err := getAllUsersFromTableUser(db)
+    if err != nil {
+        http.Error(w, err.Error(), http.StatusInternalServerError)
+        return
+    }
+    if err := utils.WriteJson(w, allUsers, http.StatusOK); err != nil {
+        http.Error(w, err.Error(), http.StatusInternalServerError)
+        return
+    }
 }
 
 func handleUserPost(w http.ResponseWriter, r *http.Request, db *sql.DB) {
+    var userInformation User
+    if err := json.NewDecoder(r.Body).Decode(&userInformation); err != nil {
+        http.Error(w, err.Error(), http.StatusBadRequest)
+        return
+    }
+    userInTable, err := checkUserUsernameInUserTable(db, userInformation.Username)
+    if err != nil {
+        http.Error(w, err.Error(), http.StatusBadRequest)
+        return
+    }
 
+    if userInTable { // if is already in database
+        http.Error(w, "Username already in table", http.StatusBadRequest)
+        return
+    }
+
+    if err := insertUser(db, userInformation); err != nil {
+        http.Error(w, err.Error(), http.StatusBadRequest)
+        return
+    }
+
+    utils.WriteJson(w, "Insertion Succes", http.StatusOK)
 }
 
 func handleUserPatch(w http.ResponseWriter, r *http.Request, db *sql.DB) {
@@ -48,7 +79,28 @@ func handleUserPatch(w http.ResponseWriter, r *http.Request, db *sql.DB) {
 }
 
 func handleUserDelete(w http.ResponseWriter, r *http.Request, db *sql.DB) {
+    var userCredentials UserCredentialRequest
+    if err := json.NewDecoder(r.Body).Decode(&userCredentials); err != nil {
+        http.Error(w, err.Error(), http.StatusBadRequest)
+        return
+    }
+    valid, err:= checkUserCredentials(db, userCredentials)
+    if err != nil {
+        http.Error(w, err.Error(), http.StatusBadRequest)
+        return
 
+    }
+    if !valid {
+        http.Error(w, "Password Invalid", http.StatusUnauthorized)
+        return
+    }
+
+    if err := deleteUser(db, userCredentials.Username); err != nil {
+        http.Error(w, err.Error(), http.StatusInternalServerError)
+        return
+    }
+    utils.WriteJson(w, "Delete User", http.StatusOK)
+    return
 }
 
 // URL : api/users/<username>

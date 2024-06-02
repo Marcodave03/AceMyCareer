@@ -5,12 +5,17 @@ type User struct {
     Password string `json:"password"`
     Firstname string `json:"firstname"`
     Lastname string `json:"lastname"`
+    Email string `json:"email"`
     ProfilePictureUrl string `json:"profile_picture_url"`
-    Score_1 int `json:"score_1"`
-    Score_2 int `json:"score_2"`
-    Score_3 int `json:"score_3"`
-    Score_4 int `json:"score_4"`
+    ScoreTechnical int `json:"score_technical"`
+    ScoreLeadership int `json:"score_leadership"`
+    ScoreTeamwork int `json:"score_teamwork"`
+    ScoreOrganization int `json:"score_organization"`
+}
 
+type UserCredentialRequest struct {
+    Username string `json:"username"`
+    Password string `json:"password"`
 }
 
 

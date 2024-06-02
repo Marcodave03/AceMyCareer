@@ -2,12 +2,16 @@ package api
 
 import (
 	"fmt"
+	"io"
 	"log"
 	"net/http"
 	"os"
+	"path/filepath"
+	"strings"
 
 	"database/sql"
 
+	"github.com/google/uuid"
 	"github.com/gorilla/mux"
 	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
@@ -37,10 +41,68 @@ func CreateNewApiServer(listenPort string) *ApiServer {
 	}
 }
 
+func (s *ApiServer) handleUploadImages(w http.ResponseWriter, r *http.Request) {
+	switch r.Method {
+
+	case http.MethodPost:
+
+		err := r.ParseMultipartForm(10 << 24) // 10 MB Max
+		if err != nil {
+            http.Error(w, "Form Too Big", http.StatusBadRequest)
+            return
+		}
+
+        file, header, err := r.FormFile("image")
+		if err != nil {
+            http.Error(w, "Unable to read form", http.StatusBadRequest)
+            return
+		}
+        defer file.Close()
+
+        filename := strings.Replace(uuid.New().String() + filepath.Ext(header.Filename), "-", "", -1)
+        filepath := filepath.Join(os.Getenv("API_STATIC_FILES_DIRECTORY"), filename)
+
+        dst, err := os.Create(filepath)
+        if err != nil {
+            http.Error(w, "Unable to create file", http.StatusInternalServerError)
+            return
+        }
+        defer dst.Close()
+
+        if _, err := io.Copy(dst, file); err != nil {
+            http.Error(w, "Unable to create file", http.StatusInternalServerError)
+            return
+        }
+
+        if err := utils.WriteJson(w, fmt.Sprintf("Upload Succesfull : %s", filename), http.StatusOK); err != nil {
+            http.Error(w, "Unable to create file", http.StatusInternalServerError)
+            return
+        }
+		break
+
+	default:
+		http.Error(w, "Method not suppported", http.StatusMethodNotAllowed)
+        return
+	}
+}
+
+func (s *ApiServer) createAllTables(w http.ResponseWriter, r *http.Request) {
+
+    err := users.CreateTableUsers(s.db)
+    if err != nil {
+        http.Error(w, err.Error(), http.StatusInternalServerError)
+        return
+    }
+
+}
+
 func (s *ApiServer) setupRoutes() *mux.Router {
 	router := mux.NewRouter()
 
 	router.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) { utils.WriteJson(w, "titit", http.StatusOK) })
+
+    // Utility
+    router.HandleFunc("/api/utils/create_all_tables", s.createAllTables)
 
 	// Users
 	userHandler := users.CreateUserHandler(s.db)
@@ -48,8 +110,8 @@ func (s *ApiServer) setupRoutes() *mux.Router {
 	router.HandleFunc("/api/users/{username}", userHandler.HandleUserByUsername)
 
 	// Static File Servers
-	// router.Handle("/api/images/profilepicture/", http.StripPrefix("/api/images/profilepicture/", http.FileServer(http.Dir(""))))
-	router.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir(os.Getenv("API_STATIC_FILES_DIRECTORY")))))
+	router.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir(os.Getenv("API_STATIC_FILES_DIRECTORY"))))) // images
+    router.HandleFunc("/api/images/",s.handleUploadImages)
 
 	return router
 }
