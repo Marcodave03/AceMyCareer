@@ -4,7 +4,6 @@ import (
 	"database/sql"
 	"net/http"
 
-	"github.com/gorilla/mux"
 	_ "github.com/lib/pq"
 )
 
@@ -62,5 +61,11 @@ func (s *userHandler) HandleUserByUsername(w http.ResponseWriter, r *http.Reques
 }
 
 func handleUserByUsernameGet(w http.ResponseWriter, r *http.Request, db *sql.DB) {
-    targetUsername := mux.Vars(r)["username"]
+    // targetUsername := mux.Vars(r)["username"]
 }
+
+func HandleProfilePictureFileServer() {
+
+}
+
+
