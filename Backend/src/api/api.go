@@ -123,5 +123,5 @@ func (s *ApiServer) Run() {
 	}
 
 	fmt.Println("Api Server Listening on ", s.ListenAddr)
-	log.Fatal(http.ListenAndServe(s.ListenAddr, s.setupRoutes()))
+	log.Fatal(http.ListenAndServeTLS(s.ListenAddr, "server.crt", "server.key",s.setupRoutes()))
 }
