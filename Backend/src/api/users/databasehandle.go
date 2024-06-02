@@ -107,6 +107,23 @@ func deleteUser(db *sql.DB, targetUsername string) error {
 	return err
 }
 
+func getUserbyUsername(db *sql.DB, username string) (User, error) {
+    var user User
+    err := db.QueryRow("SELECT * FROM accounts.users WHERE username = $1", username).Scan(
+			&user.Username,
+			&user.Password,
+			&user.Firstname,
+			&user.Lastname,
+			&user.Email,
+			&user.ProfilePictureUrl,
+			&user.ScoreTechnical,
+			&user.ScoreLeadership,
+			&user.ScoreTeamwork,
+			&user.ScoreOrganization,
+        )
+    return user, err
+}
+
 func getAllUsersFromTableUser(db *sql.DB) ([]User, error) {
 	query := `
     SELECT * FROM accounts.users;
@@ -131,7 +148,8 @@ func getAllUsersFromTableUser(db *sql.DB) ([]User, error) {
 			&user.ScoreTechnical,
 			&user.ScoreLeadership,
 			&user.ScoreTeamwork,
-			&user.ScoreOrganization)
+			&user.ScoreOrganization,
+            )
 		if err != nil {
 			return nil, err
 		}
