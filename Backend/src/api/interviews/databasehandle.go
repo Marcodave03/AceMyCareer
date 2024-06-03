@@ -60,6 +60,7 @@ func CreateTableInterviews(db *sql.DB) error {
 	return err
 }
 
+// Level {{{
 func getAllInterviewLevels(db *sql.DB) ( []interviewLevel,  error ) {
     query := `
     SELECT * FROM interviews.interview_levels;
@@ -85,14 +86,6 @@ func getAllInterviewLevels(db *sql.DB) ( []interviewLevel,  error ) {
     return levels, nil
 }
 
-// inserts level name
-func insertLevel(db *sql.DB, newLevelName string) error {
-    query :=` INSERT INTO interviews.interview_levels (name) VALUES ($1);`
-
-    _, err := db.Exec(query, newLevelName)
-    return err
-}
-
 func deleteLevel(db *sql.DB, levelID int) error {
     query := `SELECT id FROM interviews.interview_levels WHERE id = $1;`
     var foundid int
@@ -104,3 +97,96 @@ func deleteLevel(db *sql.DB, levelID int) error {
     _, err := db.Exec(query, levelID)
     return err
 }
+
+
+// inserts level name
+func insertLevel(db *sql.DB, newLevelName string) error {
+    query :=` INSERT INTO interviews.interview_levels (name) VALUES ($1);`
+
+    _, err := db.Exec(query, newLevelName)
+    return err
+}
+
+// }}}
+
+// Positions {{{
+func getAllInterviewPositions(db *sql.DB) ( []interviewPosition,  error ) {
+    query := `
+    SELECT * FROM interviews.interview_positions;
+    `
+    rows, err := db.Query(query);
+    if err != nil {
+        return nil, err
+    }
+    defer rows.Close()
+
+    var positions []interviewPosition
+    for rows.Next() {
+        var curPosition interviewPosition
+        err := rows.Scan(&curPosition.Name)
+        if err != nil {
+            return nil, err
+        }
+
+        positions = append(positions, curPosition)
+    }
+    if err := rows.Err(); err != nil {
+        return nil, err
+    }
+    return positions, nil
+}
+
+func insertPosition(db *sql.DB, newPositionName string) error {
+    query :=` INSERT INTO interviews.interview_positions (name) VALUES ($1);`
+    _, err := db.Exec(query, newPositionName)
+    return err
+}
+
+func deletePositions(db *sql.DB, positionName string) error {
+    query := `DELETE FROM interviews.interview_positions WHERE name = $1`
+    _, err := db.Exec(query, positionName)
+    return err
+}
+
+// }}}
+
+// Industries
+func getAllInterviewIndustries(db *sql.DB) ( []interviewIndustry,  error ) {
+    query := `
+    SELECT * FROM interviews.interview_industries;
+    `
+    rows, err := db.Query(query);
+    if err != nil {
+        return nil, err
+    }
+    defer rows.Close()
+
+    var industries []interviewIndustry
+    for rows.Next() {
+        var curIndustrie interviewIndustry
+        err := rows.Scan(&curIndustrie.Name)
+        if err != nil {
+            return nil, err
+        }
+
+        industries = append(industries, curIndustrie)
+    }
+    if err := rows.Err(); err != nil {
+        return nil, err
+    }
+    return industries, nil
+}
+
+func insertIndustry(db *sql.DB, newIndustryName string) error {
+    query :=` INSERT INTO interviews.interview_industries (name) VALUES ($1);`
+    _, err := db.Exec(query, newIndustryName)
+    return err
+}
+
+func deleteIndustries(db *sql.DB, industryName string) error {
+    query := `DELETE FROM interviews.interview_industries WHERE name = $1`
+    _, err := db.Exec(query, industryName)
+    return err
+}
+
+
