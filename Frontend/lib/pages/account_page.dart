@@ -19,11 +19,13 @@ class Instructor {
   final String firstName;
   final String lastName;
   final String email;
+  final String imageUrl; // Add imageUrl field
 
   Instructor({
     required this.firstName,
     required this.lastName,
     required this.email,
+    required this.imageUrl, // Initialize imageUrl
   });
 
   factory Instructor.fromJson(Map<String, dynamic> json) {
@@ -31,6 +33,7 @@ class Instructor {
       firstName: json['firstname'],
       lastName: json['lastname'],
       email: json['email'],
+      imageUrl: json['imageUrl'], // Parse imageUrl
     );
   }
 }
@@ -39,39 +42,37 @@ class _AccountPageState extends State<AccountPage> {
   int _selectedIndex = 3;
   String name = '';
   String email = '';
+  String imageUrl = ''; // Add imageUrl variable
 
   @override
-void initState() {
-  super.initState();
-  fetchUserData().then((instructor) {
-    setState(() {
-      name = '${instructor.firstName} ${instructor.lastName}';
-      email = instructor.email;
+  void initState() {
+    super.initState();
+    fetchUserData().then((instructor) {
+      setState(() {
+        name = '${instructor.firstName} ${instructor.lastName}';
+        email = instructor.email;
+        imageUrl = instructor.imageUrl; // Set imageUrl
+      });
+    }).catchError((error) {
+      print('Error fetching user data: $error');
     });
-  }).catchError((error) {
-    print('Error fetching user data: $error');
-  });
-}
-
-  
-  Future<Instructor> fetchUserData() async {
-  final response = await http.get(Uri.parse('http/localhost:8080/api/users'));
-
-  if (response.statusCode == 200) {
-    // Parse the JSON response
-    final Map<String, dynamic> userData = json.decode(response.body);
-    
-    // Decode JSON into Instructor object using named constructor
-    return Instructor.fromJson(userData);
-  } else {
-    print('Failed to load user data. Status code: ${response.statusCode}');
-    print('Response body: ${response.body}');
-    throw Exception('Failed to load user data');
   }
-}
 
+  Future<Instructor> fetchUserData() async {
+    final response = await http.get(Uri.parse('http://localhost:8080/api/users'));
 
-    void _onNavBarTap(int index) {
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> userData = json.decode(response.body);
+
+      return Instructor.fromJson(userData);
+    } else {
+      print('Failed to load user data. Status code: ${response.statusCode}');
+      print('Response body: ${response.body}');
+      throw Exception('Failed to load user data');
+    }
+  }
+
+  void _onNavBarTap(int index) {
     setState(() {
       _selectedIndex = index;
     });
@@ -106,11 +107,13 @@ void initState() {
           children: <Widget>[
             CircleAvatar(
               radius: 50,
-              backgroundImage: AssetImage('lib/images/chelsea.jpeg'),
+              backgroundImage: imageUrl.isNotEmpty
+                  ? NetworkImage(imageUrl)
+                  : AssetImage('lib/images/chelsea.jpeg') as ImageProvider,
             ),
             SizedBox(height: 20),
             Text(
-              name + "Chelsea",
+              name,
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
@@ -118,7 +121,7 @@ void initState() {
             ),
             SizedBox(height: 10),
             Text(
-              email + "chelsea@gmail.com",
+              email,
               style: TextStyle(
                 fontSize: 18,
                 color: Colors.grey,
@@ -143,4 +146,3 @@ void initState() {
     );
   }
 }
-

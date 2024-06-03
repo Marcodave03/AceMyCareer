@@ -8,12 +8,11 @@ import 'package:preform/user_auth/user_provider.dart';
 class FirebaseAuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  Future<User?> signUpWithEmailAndPassword(
-      String email, String password) async {
+  Future<User?> signUpWithEmailAndPassword(String email, String password) async {
     try {
       UserCredential credential = await _auth.createUserWithEmailAndPassword(
-          email: email, password: password);
-      return credential.user;
+        email: email, password: password);
+        return credential.user;
     } catch (e) {
       print("Error in signing up");
     }
