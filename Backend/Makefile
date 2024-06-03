@@ -12,3 +12,6 @@ build:
 run: build
 	@./bin/api
 
+force-run:
+	@./bin/api
+

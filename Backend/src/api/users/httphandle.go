@@ -6,6 +6,7 @@ import (
 	"net/http"
 
 	"github.com/Marcodave03/AceMyCareer/backend/src/api/utils"
+	"github.com/gorilla/mux"
 	_ "github.com/lib/pq"
 )
 
@@ -21,6 +22,7 @@ func CreateUserHandler(db *sql.DB) *userHandler {
 
 // URL : api/users
 func (s *userHandler) HandleUsers(w http.ResponseWriter, r *http.Request) {
+    utils.EnableCors(&w)
 	switch r.Method {
 	case http.MethodGet:
 		handleUserGet(w, r, s.DB) // gets all users
@@ -105,6 +107,7 @@ func handleUserDelete(w http.ResponseWriter, r *http.Request, db *sql.DB) {
 
 // URL : api/users/<username>
 func (s *userHandler) HandleUserByUsername(w http.ResponseWriter, r *http.Request) {
+    utils.EnableCors(&w)
 	switch r.Method {
 	case http.MethodGet:
         handleUserByUsernameGet(w, r, s.DB)
@@ -113,7 +116,18 @@ func (s *userHandler) HandleUserByUsername(w http.ResponseWriter, r *http.Reques
 }
 
 func handleUserByUsernameGet(w http.ResponseWriter, r *http.Request, db *sql.DB) {
-    // targetUsername := mux.Vars(r)["username"]
+    targetUsername := mux.Vars(r)["username"]
+
+    founduser, err := getUserbyUsername(db, targetUsername)
+    if err == sql.ErrNoRows {
+        http.Error(w, "Not Found",http.StatusBadRequest)
+        return
+    }
+
+    if err := utils.WriteJson(w,founduser, http.StatusOK); err != nil {
+        http.Error(w, err.Error(), http.StatusBadRequest)
+        return
+    }
 }
 
 func HandleProfilePictureFileServer() {

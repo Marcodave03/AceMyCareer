@@ -16,6 +16,7 @@ import (
 	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
 
+	"github.com/Marcodave03/AceMyCareer/backend/src/api/interviews"
 	"github.com/Marcodave03/AceMyCareer/backend/src/api/users"
 	"github.com/Marcodave03/AceMyCareer/backend/src/api/utils"
 )
@@ -88,12 +89,15 @@ func (s *ApiServer) handleUploadImages(w http.ResponseWriter, r *http.Request) {
 
 func (s *ApiServer) createAllTables(w http.ResponseWriter, r *http.Request) {
 
-    err := users.CreateTableUsers(s.db)
-    if err != nil {
+    if err := users.CreateTableUsers(s.db); err != nil {
         http.Error(w, err.Error(), http.StatusInternalServerError)
         return
     }
 
+    if err := interviews.CreateTableInterviews(s.db); err != nil {
+        http.Error(w, err.Error(), http.StatusInternalServerError)
+        return
+    }
 }
 
 func (s *ApiServer) setupRoutes() *mux.Router {
@@ -109,9 +113,14 @@ func (s *ApiServer) setupRoutes() *mux.Router {
 	router.HandleFunc("/api/users", userHandler.HandleUsers)
 	router.HandleFunc("/api/users/{username}", userHandler.HandleUserByUsername)
 
+    // Levels
+    interviewHandler := interviews.CreateInterviewHandler(s.db)
+    router.HandleFunc("/api/levels", interviewHandler.HandleLevel)
+
 	// Static File Servers
 	router.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir(os.Getenv("API_STATIC_FILES_DIRECTORY"))))) // images
     router.HandleFunc("/api/images/",s.handleUploadImages)
+
 
 	return router
 }
@@ -123,5 +132,5 @@ func (s *ApiServer) Run() {
 	}
 
 	fmt.Println("Api Server Listening on ", s.ListenAddr)
-	log.Fatal(http.ListenAndServe(s.ListenAddr, s.setupRoutes()))
+	log.Fatal(http.ListenAndServeTLS(s.ListenAddr, "server.crt", "server.key",s.setupRoutes()))
 }
