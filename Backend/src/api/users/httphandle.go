@@ -22,6 +22,7 @@ func CreateUserHandler(db *sql.DB) *userHandler {
 
 // URL : api/users
 func (s *userHandler) HandleUsers(w http.ResponseWriter, r *http.Request) {
+    utils.EnableCors(&w)
 	switch r.Method {
 	case http.MethodGet:
 		handleUserGet(w, r, s.DB) // gets all users
@@ -106,6 +107,7 @@ func handleUserDelete(w http.ResponseWriter, r *http.Request, db *sql.DB) {
 
 // URL : api/users/<username>
 func (s *userHandler) HandleUserByUsername(w http.ResponseWriter, r *http.Request) {
+    utils.EnableCors(&w)
 	switch r.Method {
 	case http.MethodGet:
         handleUserByUsernameGet(w, r, s.DB)

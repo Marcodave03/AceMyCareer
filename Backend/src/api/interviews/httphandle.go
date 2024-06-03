@@ -20,6 +20,7 @@ func CreateInterviewHandler(db *sql.DB) *interviewHandler {
 }
 
 func (s *interviewHandler) HandleLevel(w http.ResponseWriter, r *http.Request) {
+    utils.EnableCors(&w)
 	var levelresponse interviewLevel
 	if err := json.NewDecoder(r.Body).Decode(&levelresponse); err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
