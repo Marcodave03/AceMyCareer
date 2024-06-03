@@ -55,7 +55,7 @@ void initState() {
 
   
   Future<Instructor> fetchUserData() async {
-  final response = await http.get(Uri.parse('http://localhost:8080/api/users'));
+  final response = await http.get(Uri.parse('http/localhost:8080/api/users'));
 
   if (response.statusCode == 200) {
     // Parse the JSON response
