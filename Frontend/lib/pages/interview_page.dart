@@ -4,6 +4,11 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import '../widgets/bottom_navbar.dart';
 
+
+void main() {
+  runApp(const MaterialApp(home: InterviewPage()));
+}
+
 class InterviewPage extends StatefulWidget {
   const InterviewPage({Key? key}) : super(key: key);
 
@@ -29,19 +34,19 @@ class InterviewLevel {
 }
 
 class _InterviewPageState extends State<InterviewPage> {
-  // 1 = Interview Page
   int _selectedIndex = 1;
-
-  // String name = '';
+  String name='';
 
   List<InterviewLevel> _interviewLevels = [];
+  List<bool> levelcheckboxValues = [];
 
-  @override
+ @override
   void initState() {
     super.initState();
     fetchLevelData().then((levels) {
       setState(() {
         _interviewLevels = levels;
+        levelcheckboxValues = List<bool>.filled(levels.length, false);
       });
     }).catchError((error) {
       print('Error fetching level data: $error');
@@ -63,7 +68,6 @@ class _InterviewPageState extends State<InterviewPage> {
     }
   }
 
-  // for bottom navbar navigation
   void _onNavBarTap(int index) {
     setState(() {
       _selectedIndex = index;
@@ -96,9 +100,8 @@ class _InterviewPageState extends State<InterviewPage> {
   ];
   // final List<String> level = ['Internship', 'Entry-Level', 'Mid-Senior Level'];
   final List<bool> checkboxValues = [false, false, false, false, false];
-  final List<bool> levelcheckboxValues = [false, false, false];
-
   final TextEditingController _textFieldController = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {

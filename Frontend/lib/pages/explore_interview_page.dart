@@ -7,25 +7,15 @@ import 'package:preform/widgets/search_bar.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+void main(){
+  runApp(const MaterialApp(home:ExploreInterviewPage()));
+}
+
 class ExploreInterviewPage extends StatefulWidget {
   const ExploreInterviewPage({super.key});
 
   @override
   State<ExploreInterviewPage> createState() => _ExploreInterviewPageState();
-}
-
-class Instructor {
-  final String Name;
-
-  Instructor({
-    required this.Name,
-  });
-
-  factory Instructor.fromJson(Map<String, dynamic> json) {
-    return Instructor(
-      Name: json['name'],
-    );
-  }
 }
 
 class _ExploreInterviewPageState extends State<ExploreInterviewPage> {

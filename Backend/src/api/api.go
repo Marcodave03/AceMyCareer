@@ -87,7 +87,8 @@ func (s *ApiServer) handleUploadImages(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func (s *ApiServer) createAllTables(w http.ResponseWriter, r *http.Request) {
+func (s *ApiServer) 
+createAllTables(w http.ResponseWriter, r *http.Request) {
 
     if err := users.CreateTableUsers(s.db); err != nil {
         http.Error(w, err.Error(), http.StatusInternalServerError)
