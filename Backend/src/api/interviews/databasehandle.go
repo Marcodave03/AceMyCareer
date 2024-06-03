@@ -2,6 +2,7 @@ package interviews
 
 import (
 	"database/sql"
+	"fmt"
 
 	_ "github.com/lib/pq"
 )
@@ -87,14 +88,16 @@ func getAllInterviewLevels(db *sql.DB) ( []interviewLevel,  error ) {
 }
 
 func deleteLevel(db *sql.DB, levelID int) error {
-    query := `SELECT id FROM interviews.interview_levels WHERE id = $1;`
-    var foundid int
-    if err := db.QueryRow(query, levelID).Scan(&foundid); err != nil {
+    query := `DELETE FROM interviews.interview_levels WHERE id = $1`
+    affected, err := db.Exec(query, levelID)
+    if err != nil {
         return err
     }
+    total, err := affected.RowsAffected()
+    if total == 0 {
+        return fmt.Errorf("Not Found")
+    }
 
-    query = `DELETE FROM interviews.interview_levels WHERE id = $1`
-    _, err := db.Exec(query, levelID)
     return err
 }
 
@@ -144,7 +147,11 @@ func insertPosition(db *sql.DB, newPositionName string) error {
 
 func deletePositions(db *sql.DB, positionName string) error {
     query := `DELETE FROM interviews.interview_positions WHERE name = $1`
-    _, err := db.Exec(query, positionName)
+    result, err := db.Exec(query, positionName)
+    affected, err := result.RowsAffected();
+    if  affected == 0 {
+        return fmt.Errorf("Not Found")
+    }
     return err
 }
 
@@ -185,7 +192,14 @@ func insertIndustry(db *sql.DB, newIndustryName string) error {
 
 func deleteIndustries(db *sql.DB, industryName string) error {
     query := `DELETE FROM interviews.interview_industries WHERE name = $1`
-    _, err := db.Exec(query, industryName)
+    affected, err := db.Exec(query, industryName)
+    if err != nil {
+        return err
+    }
+    total, err := affected.RowsAffected()
+    if total == 0 {
+        return fmt.Errorf("Not Found")
+    }
     return err
 }
 

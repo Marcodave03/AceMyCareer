@@ -22,7 +22,7 @@ func CreateInterviewHandler(db *sql.DB) *interviewHandler {
 func (s *interviewHandler) HandleLevel(w http.ResponseWriter, r *http.Request) {
 	utils.EnableCors(&w)
 	var levelRequest interviewLevel
-	if err := json.NewDecoder(r.Body).Decode(&levelRequest); err != nil {
+	if err := json.NewDecoder(r.Body).Decode(&levelRequest); err != nil && err.Error() != "EOF"{
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
@@ -70,7 +70,7 @@ func (s *interviewHandler) HandleLevel(w http.ResponseWriter, r *http.Request) {
 func (s *interviewHandler) HandlePositions(w http.ResponseWriter, r *http.Request) {
 	utils.EnableCors(&w)
 	var positionRequest interviewPosition
-	if err := json.NewDecoder(r.Body).Decode(&positionRequest); err != nil {
+	if err := json.NewDecoder(r.Body).Decode(&positionRequest); err != nil && err.Error() != "EOF"{
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
@@ -115,7 +115,8 @@ func (s *interviewHandler) HandlePositions(w http.ResponseWriter, r *http.Reques
 func (s *interviewHandler) HandleIndustries(w http.ResponseWriter, r *http.Request) {
 	utils.EnableCors(&w)
 	var industryRequest interviewIndustry
-	if err := json.NewDecoder(r.Body).Decode(&industryRequest); err != nil {
+	if err := json.NewDecoder(r.Body).Decode(&industryRequest); err != nil && err.Error() != "EOF"{
+        fmt.Println(err.Error())
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
@@ -126,7 +127,7 @@ func (s *interviewHandler) HandleIndustries(w http.ResponseWriter, r *http.Reque
 			http.Error(w, err.Error(), http.StatusBadRequest)
 			return
 		}
-        if err := utils.WriteJson(w, industries, http.StatusOK); err != nil {
+        if err := utils.WriteJson(w,industries, http.StatusOK); err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
             return
         }
@@ -155,6 +156,5 @@ func (s *interviewHandler) HandleIndustries(w http.ResponseWriter, r *http.Reque
     default:
         http.Error(w, "Method Not Allowed", http.StatusMethodNotAllowed)
         return
-    break;
 	}
 }
