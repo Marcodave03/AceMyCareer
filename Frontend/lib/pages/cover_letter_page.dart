@@ -7,7 +7,6 @@ import 'package:file_picker/file_picker.dart';
 import 'package:http/http.dart' as http;
 import 'package:read_pdf_text/read_pdf_text.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-
 import 'cover_letter_feedback_page.dart';
 
 void main() {

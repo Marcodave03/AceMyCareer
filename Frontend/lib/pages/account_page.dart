@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
 import '../widgets/bottom_navbar.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 void main() {
   runApp(const MaterialApp(home: AccountPage()));
@@ -14,13 +15,63 @@ class AccountPage extends StatefulWidget {
   State<AccountPage> createState() => _AccountPageState();
 }
 
+class Instructor {
+  final String firstName;
+  final String lastName;
+  final String email;
+
+  Instructor({
+    required this.firstName,
+    required this.lastName,
+    required this.email,
+  });
+
+  factory Instructor.fromJson(Map<String, dynamic> json) {
+    return Instructor(
+      firstName: json['firstname'],
+      lastName: json['lastname'],
+      email: json['email'],
+    );
+  }
+}
+
 class _AccountPageState extends State<AccountPage> {
-
-  // 2 = Account Page
   int _selectedIndex = 3;
+  String name = '';
+  String email = '';
 
-  // for bottom navbar navigation
-  void _onNavBarTap(int index) {
+  @override
+void initState() {
+  super.initState();
+  fetchUserData().then((instructor) {
+    setState(() {
+      name = '${instructor.firstName} ${instructor.lastName}';
+      email = instructor.email;
+    });
+  }).catchError((error) {
+    print('Error fetching user data: $error');
+  });
+}
+
+  
+  Future<Instructor> fetchUserData() async {
+  final response = await http.get(Uri.parse('http://localhost:8080/api/users'));
+
+  if (response.statusCode == 200) {
+    // Parse the JSON response
+    final Map<String, dynamic> userData = json.decode(response.body);
+    
+    // Decode JSON into Instructor object using named constructor
+    return Instructor.fromJson(userData);
+  } else {
+    print('Failed to load user data. Status code: ${response.statusCode}');
+    print('Response body: ${response.body}');
+    throw Exception('Failed to load user data');
+  }
+}
+
+
+    void _onNavBarTap(int index) {
     setState(() {
       _selectedIndex = index;
     });
@@ -39,15 +90,9 @@ class _AccountPageState extends State<AccountPage> {
         Navigator.pushNamed(context, '/accountPage');
         break;
     }
-
   }
 
-  String name = 'Chelsea Ng';
-  String email = 'chelsea.ng@gmail.com';
-
   void _editProfile() {
-    // Placeholder for edit profile logic
-    // This is where you might open an edit profile page or show a modal
     print('Edit profile tapped');
   }
 
@@ -65,7 +110,7 @@ class _AccountPageState extends State<AccountPage> {
             ),
             SizedBox(height: 20),
             Text(
-              name,
+              name + "Chelsea",
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
@@ -73,7 +118,7 @@ class _AccountPageState extends State<AccountPage> {
             ),
             SizedBox(height: 10),
             Text(
-              email,
+              email + "chelsea@gmail.com",
               style: TextStyle(
                 fontSize: 18,
                 color: Colors.grey,
@@ -97,7 +142,5 @@ class _AccountPageState extends State<AccountPage> {
       ),
     );
   }
-
-
-
 }
+

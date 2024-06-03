@@ -97,7 +97,14 @@ func (s *ApiServer) createAllTables(w http.ResponseWriter, r *http.Request) {
 }
 
 func (s *ApiServer) setupRoutes() *mux.Router {
+
 	router := mux.NewRouter()
+
+	// Set up CORS middleware
+	cors := handlers.CORS(handlers.AllowedOrigins([]string{"*"}))
+
+	// Apply CORS middleware to all routes
+	router.Use(cors)
 
 	router.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) { utils.WriteJson(w, "titit", http.StatusOK) })
 
