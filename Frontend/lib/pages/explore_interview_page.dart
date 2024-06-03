@@ -4,6 +4,8 @@ import 'package:preform/pages/interview_page.dart';
 import 'package:preform/widgets/ExploreMockInterviewCard.dart';
 import 'package:preform/widgets/bottom_navbar.dart';
 import 'package:preform/widgets/search_bar.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class ExploreInterviewPage extends StatefulWidget {
   const ExploreInterviewPage({super.key});
@@ -12,10 +14,23 @@ class ExploreInterviewPage extends StatefulWidget {
   State<ExploreInterviewPage> createState() => _ExploreInterviewPageState();
 }
 
+class Instructor {
+  final String Name;
+
+  Instructor({
+    required this.Name,
+  });
+
+  factory Instructor.fromJson(Map<String, dynamic> json) {
+    return Instructor(
+      Name: json['name'],
+    );
+  }
+}
+
 class _ExploreInterviewPageState extends State<ExploreInterviewPage> {
   int _selectedIndex = 1;
 
-  // for bottom navbar navigation
   void _onNavBarTap(int index) {
     setState(() {
       _selectedIndex = index;

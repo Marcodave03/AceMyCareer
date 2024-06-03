@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 import '../widgets/bottom_navbar.dart';
 
 class InterviewPage extends StatefulWidget {
@@ -10,9 +11,57 @@ class InterviewPage extends StatefulWidget {
   State<InterviewPage> createState() => _InterviewPageState();
 }
 
+class InterviewLevel {
+  final int id;
+  final String name;
+
+  InterviewLevel({
+    required this.id,
+    required this.name,
+  });
+
+  factory InterviewLevel.fromJson(Map<String, dynamic> json) {
+    return InterviewLevel(
+      id: json['id'],
+      name: json['name'],
+    );
+  }
+}
+
 class _InterviewPageState extends State<InterviewPage> {
   // 1 = Interview Page
   int _selectedIndex = 1;
+
+  // String name = '';
+
+  List<InterviewLevel> _interviewLevels = [];
+
+  @override
+  void initState() {
+    super.initState();
+    fetchLevelData().then((levels) {
+      setState(() {
+        _interviewLevels = levels;
+      });
+    }).catchError((error) {
+      print('Error fetching level data: $error');
+    });
+  }
+
+  Future<List<InterviewLevel>> fetchLevelData() async {
+    try {
+      final response = await http.get(Uri.parse('http://localhost:8080/api/levels'));
+      if (response.statusCode == 200) {
+        final List<dynamic> responseData = json.decode(response.body);
+        return responseData.map((levelData) => InterviewLevel.fromJson(levelData)).toList();
+      } else {
+        throw Exception('Failed to load level data. Status code: ${response.statusCode}');
+      }
+    } catch (error) {
+      print('Error fetching level data: $error');
+      rethrow;
+    }
+  }
 
   // for bottom navbar navigation
   void _onNavBarTap(int index) {
@@ -45,7 +94,7 @@ class _InterviewPageState extends State<InterviewPage> {
     'PostgreSQL',
     'Oracle'
   ];
-  final List<String> level = ['Internship', 'Entry-Level', 'Mid-Senior Level'];
+  // final List<String> level = ['Internship', 'Entry-Level', 'Mid-Senior Level'];
   final List<bool> checkboxValues = [false, false, false, false, false];
   final List<bool> levelcheckboxValues = [false, false, false];
 
@@ -283,49 +332,53 @@ class _InterviewPageState extends State<InterviewPage> {
                 ),
               ),
               const SizedBox(height: 10),
-              Container(
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: const Color(0xFFC4084F),
-                    width: 2.0,
-                  ),
-                  borderRadius: BorderRadius.circular(8.0),
+             Container(
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: const Color(0xFFC4084F),
+                  width: 2.0,
                 ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ListView.builder(
-                      padding: const EdgeInsets.only(
-                          top: 0, bottom: 0), // Adjust top and bottom padding
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: level.length,
-                      itemBuilder: (context, index) {
-                        return ListTile(
-                          contentPadding: const EdgeInsets.symmetric(
-                              horizontal: 14,
-                              vertical:
-                                  1), // Remove horizontal and vertical padding
-                          title: Text(level[index]),
-                          dense: true, // Make ListTile dense
-                          visualDensity: const VisualDensity(
-                              horizontal: 0,
-                              vertical: -4), // Adjust vertical density
-                          trailing: Checkbox(
-                            value: levelcheckboxValues[index],
-                            onChanged: (bool? value) {
-                              setState(() {
-                                levelcheckboxValues[index] = value ?? false;
-                              });
-                            },
-                          ),
-                        );
-                      },
-                    ),
-                  ],
-                ),
+                borderRadius: BorderRadius.circular(8.0),
               ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ListView.builder(
+                    padding: const EdgeInsets.only(
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: _interviewLevels.length, // Use the length of the fetched levels
+                    itemBuilder: (context, index) {
+                      final interviewLevel = _interviewLevels[index];
+                      return ListTile(
+                        contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 14,
+                          vertical: 1,
+                        ),
+                        title: Text(interviewLevel.name), // Use the name from the API
+                        dense: true,
+                        visualDensity: const VisualDensity(
+                          horizontal: 0,
+                          vertical: -4,
+                        ),
+                        trailing: Checkbox(
+                          value: levelcheckboxValues[index],
+                          onChanged: (bool? value) {
+                            setState(() {
+                              levelcheckboxValues[index] = value ?? false;
+                            });
+                          },
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
               const SizedBox(height: 10),
               const Text(
                 'Work Experience',
@@ -398,3 +451,27 @@ class _InterviewPageState extends State<InterviewPage> {
     super.dispose();
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

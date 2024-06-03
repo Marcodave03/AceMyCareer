@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import '../widgets/bottom_navbar.dart';
 
 void main() {
   runApp(const MaterialApp(home: AccountPage()));
@@ -40,7 +41,7 @@ class _AccountPageState extends State<AccountPage> {
   int _selectedIndex = 3;
   String name = '';
   String email = '';
-  String imageUrl = ''; // Add imageUrl variable
+  String imageUrl = ''; 
 
   @override
   void initState() {
@@ -136,6 +137,10 @@ class _AccountPageState extends State<AccountPage> {
             ),
           ],
         ),
+      ),
+      bottomNavigationBar: BottomNavBar(
+        selectedIndex: _selectedIndex,
+        onItemSelected: _onNavBarTap,
       ),
     );
   }
