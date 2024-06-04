@@ -38,22 +38,22 @@ class _BottomNavBarState extends State<BottomNavBar> {
       items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: SvgPicture.asset('lib/images/home_true.svg', color: Colors.grey,),
-          activeIcon: SvgPicture.asset('lib/images/home_true.svg'),
+          activeIcon: SvgPicture.asset('lib/images/home_true.svg', color : Colors.blue),
           label: 'Home',
         ),
         BottomNavigationBarItem(
-          icon: SvgPicture.asset('lib/images/fontisto_mic_v1.svg', ),
-          activeIcon: SvgPicture.asset('lib/images/fontisto_mic.svg'),
+          icon: SvgPicture.asset('lib/images/mic.svg',color: Colors.grey),
+          activeIcon: SvgPicture.asset('lib/images/mic.svg', color : Colors.blue),
           label: 'Interview',
         ),
         BottomNavigationBarItem(
           icon: SvgPicture.asset('lib/images/cv_logo.svg', color: Colors.grey,),
-          activeIcon: SvgPicture.asset('lib/images/cv_logo.svg'),
+          activeIcon: SvgPicture.asset('lib/images/cv_logo.svg', color : Colors.blue),
           label: 'Cover Letter',
         ),
         BottomNavigationBarItem(
           icon: SvgPicture.asset('lib/images/mdi_account.svg', color: Colors.grey,),
-          activeIcon: SvgPicture.asset('lib/images/mdi_account.svg'),
+          activeIcon: SvgPicture.asset('lib/images/mdi_account.svg', color : Colors.blue),
           label: 'Account',
         ),
       ],

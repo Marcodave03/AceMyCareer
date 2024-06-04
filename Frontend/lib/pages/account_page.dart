@@ -108,7 +108,7 @@ class _AccountPageState extends State<AccountPage> {
               radius: 50,
               backgroundImage: imageUrl.isNotEmpty
                   ? NetworkImage(imageUrl)
-                  : AssetImage('./lib/images/chelsea.jpeg') as ImageProvider,
+                  : AssetImage('') as ImageProvider,
             ),
             SizedBox(height: 20),
             Text(

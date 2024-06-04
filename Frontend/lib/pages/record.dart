@@ -268,6 +268,7 @@ void _setupTts() {
                     : _speechToText.isNotListening
                         ? 'Tap the microphone to start listening...'
                         : 'Speech not available',
+                style: TextStyle(color: Colors.white),
               ),
             ),
           ),

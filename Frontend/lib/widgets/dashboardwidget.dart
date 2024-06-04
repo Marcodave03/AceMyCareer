@@ -64,13 +64,12 @@ class DashboardWidget extends StatelessWidget {
                       Text(
                         'Average Score $averageScore',
                         style:
-                            const TextStyle(fontSize: 14, color: Colors.white),
+                            const TextStyle(fontSize: 12, color: Colors.white),
                         textAlign: TextAlign.left,
                       ),
                     ],
                   ),
                 )),
-                // Average score
               ],
             ),
             const SizedBox(height: 16),
@@ -95,15 +94,6 @@ class DashboardWidget extends StatelessWidget {
                         ),
                         textAlign: TextAlign.center,
                       ),
-                      const SizedBox(width: 30),
-                      const Text(
-                        "100/100",
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
                       const SizedBox(height: 10),
                     ],
                   ),
@@ -121,15 +111,6 @@ class DashboardWidget extends StatelessWidget {
                       const SizedBox(
                         width: 70,
                       ),
-                      Expanded(child: const Text(
-                        "Average Score",
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.grey,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),),
-
                     ],
                   ),
                   const SizedBox(height: 16),
@@ -165,7 +146,7 @@ class DashboardWidget extends StatelessWidget {
       child: Column(
         children: [
           CircularPercentIndicator(
-            radius: 56.0,
+            radius: 27.0,
             lineWidth: 5.0,
             percent: percent,
             center: Text(

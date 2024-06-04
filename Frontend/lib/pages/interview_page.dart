@@ -193,7 +193,7 @@ class _InterviewPageState extends State<InterviewPage> {
                 "🎨 Personalized Practice",
                 style: TextStyle(
                   fontSize: 22,
-                  color: Color(0xFFC4084F),
+                  color: Color(0xFF2962FF),
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -210,7 +210,7 @@ class _InterviewPageState extends State<InterviewPage> {
               Container(
                 decoration: BoxDecoration(
                   border: Border.all(
-                    color: const Color(0xFFC4084F),
+                    color: const Color(0xFF2962FF),
                     width: 2.0,
                   ),
                   borderRadius: BorderRadius.circular(8.0),
@@ -256,7 +256,7 @@ class _InterviewPageState extends State<InterviewPage> {
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   decoration: BoxDecoration(
                     border: Border.all(
-                      color: const Color(0xFFC4084F),
+                      color: const Color(0xFF2962FF),
                       width: 2.0,
                     ),
                     borderRadius: BorderRadius.circular(8.0),

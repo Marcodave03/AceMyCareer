@@ -113,7 +113,7 @@ class _HomeState extends State<Home> {
               child: ListView(
                 children: [
                   DashboardWidget(
-                    userName: 'Chelsea Ng',
+                    userName: 'Marco Reyes',
                     latestScore: 'Latest Score',
                     interviewType: 'HR Interview',
                     company: 'Azure Microsoft',
@@ -175,6 +175,19 @@ class _HomeState extends State<Home> {
                           progressValue: 50, numberPercentage: 20),
                     ],
                   ),
+                  Row(
+                    children: [
+                      PrevInterviewCard(
+                          progressValue: 50, numberPercentage: 20),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      PrevInterviewCard(
+                          progressValue: 50, numberPercentage: 20),
+                    ],
+                  ),
+                 
                 ],
               ),
             ),
