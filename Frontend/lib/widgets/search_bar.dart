@@ -55,20 +55,20 @@ class SearchBarState extends State<SearchBarInterview> {
             const EdgeInsets.symmetric(horizontal: 15.0, vertical: 12.0),
         hintText: 'Search industries',
         hintStyle: const TextStyle(fontSize: 14.0),
-        suffixIcon: const Icon(Icons.search, color: Colors.orange),
+        suffixIcon: const Icon(Icons.search, color: Colors.blue),
         filled: true,
         fillColor: Colors.white,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(100.0),
           borderSide: const BorderSide(
-            color: Colors.orange,
+            color: Colors.blue,
             width: 4.0,
           ),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(100.0),
           borderSide: const BorderSide(
-            color: Colors.orange,
+            color: Colors.blue,
           ),
         ),
       ),
@@ -86,7 +86,7 @@ class SearchBarState extends State<SearchBarInterview> {
         });
       },
       style: ElevatedButton.styleFrom(
-        backgroundColor: const Color(0xFFFF6C37),
+        backgroundColor: const Color(0xFF2962FF),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
         ),
@@ -132,7 +132,7 @@ class SearchBarState extends State<SearchBarInterview> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),
                   side: const BorderSide(
-                    color: Colors.orange,
+                    color: Colors.blue,
                     width: 1.0,
                   ),
                 ),

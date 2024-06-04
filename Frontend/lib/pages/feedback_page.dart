@@ -166,13 +166,13 @@ class _FeedbackPageState extends State<FeedbackPage> {
     ];
     double percent = _score / 100;
     Color progressColor =
-        Color.lerp(Colors.grey, const Color(0xFFFF6C37), percent)!;
+        Color.lerp(Colors.grey, const Color(0xFF2962FF), percent)!;
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back_ios_new,
-            color: Color(0xFFFF6C37),
+            color: Color(0xFF2962FF),
           ),
           onPressed: () {
             Get.toNamed("/interviewPage");
@@ -193,129 +193,6 @@ class _FeedbackPageState extends State<FeedbackPage> {
           child: Text(interviewFeedback),
         ),
       ),
-
-        // di-comment dulu karna gua mau bikin ui baru yang ai generated
-        /*
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                "Feedback",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-              ),
-              const Text(
-                "Mock Interview: Mid-Senior Software Engineering",
-                style: TextStyle(fontWeight: FontWeight.w400),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              const Text(
-                "Positive Feedback",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Card(
-                  shape: RoundedRectangleBorder(
-                    side:
-                        const BorderSide(color: Color(0xFFFF6C37), width: 2.0),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Column(children: [
-                      ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: posFeed.length,
-                        itemBuilder: (context, index) {
-                          return Text(
-                            '${index + 1}. ${posFeed[index]['Feedback'] ?? ''}',
-                            style: const TextStyle(
-                                fontWeight: FontWeight.w600, height: 1.5),
-                          );
-                        },
-                      ),
-                    ]),
-                  )),
-              const SizedBox(
-                height: 20,
-              ),
-              const Text(
-                "Areas of Improvement",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Card(
-                  shape: RoundedRectangleBorder(
-                    side:
-                        const BorderSide(color: Color(0xFFFF6C37), width: 2.0),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Column(children: [
-                      ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: areaImprove.length,
-                        itemBuilder: (context, index) {
-                          return Text(
-                            '${index + 1}. ${areaImprove[index]['Improve'] ?? ''}',
-                            style: const TextStyle(
-                                fontWeight: FontWeight.w600, height: 1.5),
-                          );
-                        },
-                      ),
-                    ]),
-                  )),
-              Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Center(
-                    child: CircularPercentIndicator(
-                      radius: 120.0,
-                      lineWidth: 13.0,
-                      animation: true,
-                      percent: percent,
-                      center: Text(
-                        _score.toString(),
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20.0,
-                          color: Color(0xFFFF6C37),
-                        ),
-                      ),
-                      footer: const Padding(
-                        padding: EdgeInsets.only(top: 16.0),
-                        child: Text(
-                          'Overall Score',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                            color: Color(0xFFFF6C37),
-                          ),
-                        ),
-                      ),
-                      circularStrokeCap: CircularStrokeCap.round,
-                      backgroundColor: Colors.grey[300]!,
-                      progressColor: progressColor,
-                    ),
-                  )),
-              ...qaPairs
-                  .map((qaPair) => CustomExpansionTile(
-                        title: qaPair['question']!,
-                        content: qaPair['answer']!,
-                      ))
-                  .toList(),
-            ],
-          ),
-        ),
-        */
     );
   }
 }

@@ -277,7 +277,7 @@ class _CoverLetterPageState extends State<CoverLetterPage> {
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 28,
-                      color: Color(0xFFFF6C37)),
+                      color: Color(0xFF2962FF)),
                 )),
           ),
           const Divider(
@@ -286,10 +286,10 @@ class _CoverLetterPageState extends State<CoverLetterPage> {
             color: Colors.transparent,
           ),
           RadioListTile<CVOption>(
-            selectedTileColor: const Color(0xFFFF6C37),
+            selectedTileColor: const Color(0xFF2962FF),
             title: const Text(
               'Curriculum Vitae',
-              style: TextStyle(color: Color(0xFFFF6C37)),
+              style: TextStyle(color: Color(0xFF2962FF)),
             ),
             value: CVOption.curriculumVitae,
             groupValue: _cvOption,
@@ -298,13 +298,13 @@ class _CoverLetterPageState extends State<CoverLetterPage> {
                 _cvOption = value;
               });
             },
-            activeColor: const Color(0xFFFF6C37),
+            activeColor: const Color(0xFF2962FF),
           ),
           RadioListTile<CVOption>(
-              selectedTileColor: const Color(0xFFFF6C37),
+              selectedTileColor: const Color(0xFF2962FF),
               title: const Text(
                 'Resume',
-                style: TextStyle(color: Color(0xFFFF6C37)),
+                style: TextStyle(color: Color(0xFF2962FF)),
               ),
               value: CVOption.resume,
               groupValue: _cvOption,
@@ -313,21 +313,21 @@ class _CoverLetterPageState extends State<CoverLetterPage> {
                   _cvOption = value;
                 });
               },
-              activeColor: const Color(0xFFFF6C37)),
+              activeColor: const Color(0xFF2962FF)),
           const SizedBox(height: 20),
           _cvFile != null
               ? Container(
                   padding: const EdgeInsets.all(40),
                   decoration: BoxDecoration(
                     border:
-                        Border.all(color: const Color(0xFFFF6C37), width: 2),
+                        Border.all(color: const Color(0xFF2962FF), width: 2),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Column(
                     children: [
                       const Icon(
                         Icons.file_upload,
-                        color: Color(0xFFFF6C37),
+                        color: Color(0xFF2962FF),
                         size: 24,
                       ),
                       const SizedBox(
@@ -338,7 +338,7 @@ class _CoverLetterPageState extends State<CoverLetterPage> {
                         onPressed: _clearSelection,
                         child: const Text(
                           'Cancel',
-                          style: TextStyle(color: Color(0xFFFF6C37)),
+                          style: TextStyle(color: Color(0xFF2962FF)),
                         ),
                       ),
                     ],
@@ -348,14 +348,14 @@ class _CoverLetterPageState extends State<CoverLetterPage> {
                   padding: const EdgeInsets.all(40),
                   decoration: BoxDecoration(
                     border:
-                        Border.all(color: const Color(0xFFFF6C37), width: 2),
+                        Border.all(color: const Color(0xFF2962FF), width: 2),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Column(
                     children: [
                       const Icon(
                         Icons.file_upload,
-                        color: Color(0xFFFF6C37),
+                        color: Color(0xFF2962FF),
                         size: 24,
                       ),
                       TextButton(
@@ -363,42 +363,14 @@ class _CoverLetterPageState extends State<CoverLetterPage> {
                         child: const Text(
                           'Upload CV .pdf',
                           style: TextStyle(
-                            color: Color(0xFFFF6C37),
+                            color: Color(0xFF2962FF),
                             fontSize: 16,
                           ),
                         ),
                       ),
                     ],
                   ),
-                ) /* ElevatedButton(
-                  onPressed: _pickCV,
-                  child: Text(
-                    'Upload',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ), */
-          /* Column(
-                  children: [
-                    Text('Selected File: ${_cvFile!.path.split('/').last}'),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        ElevatedButton(
-                          onPressed: _pickCV,
-                          child: Text('Change File'),
-                        ),
-                        SizedBox(width: 8),
-                        TextButton(
-                          onPressed: _clearSelection,
-                          child: Text('Cancel'),
-                        ),
-                      ],
-                    ),
-                  ],
-                )
-                */
-
-          ,
+                ),
           const SizedBox(height: 20),
           Padding(
             padding: const EdgeInsets.all(10),
@@ -408,7 +380,7 @@ class _CoverLetterPageState extends State<CoverLetterPage> {
               style: ElevatedButton.styleFrom(
                 minimumSize: const Size(double.infinity, 35),
                 alignment: Alignment.centerLeft,
-                backgroundColor: const Color(0xFFFF6C37),
+                backgroundColor: const Color(0xFF2962FF),
               ),
               child: const Row(
                 mainAxisAlignment: MainAxisAlignment.center,

@@ -29,7 +29,7 @@ class _LoadingIndicatorState extends State<LoadingIndicator> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFF6C37),
+      backgroundColor: const Color(0xFF2962FF),
       body: Center(
         child: isLoading
             ? const CircularProgressIndicator(

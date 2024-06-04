@@ -43,7 +43,7 @@ class SignUpFormState extends State<SignUpForm> {
                                       const Color.fromRGBO(255, 255, 255, 0.6),
                                   borderRadius: BorderRadius.circular(16.0),
                                   border: Border.all(
-                                    color: const Color(0xFFC4084F),
+                                    color: const Color(0xFF2962FF),
                                     width: 2.0,
                                   )),
                               child: Padding(
@@ -61,7 +61,7 @@ class SignUpFormState extends State<SignUpForm> {
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             fontSize: 26.0,
-                                            color: Color(0xFFFF6C37)),
+                                            color: Color(0xFF2962FF)),
                                       ),
                                       const SizedBox(height: 10),
                                       const Text(
@@ -129,7 +129,7 @@ class SignUpFormState extends State<SignUpForm> {
                                                 borderRadius:
                                                     BorderRadius.circular(10.0),
                                                 borderSide: const BorderSide(
-                                                  color: Color(0xFFFF6C37),
+                                                  color: Color(0xFF2962FF),
                                                   width: 1.0,
                                                 ),
                                               ),
@@ -196,7 +196,7 @@ class SignUpFormState extends State<SignUpForm> {
                                                 borderRadius:
                                                     BorderRadius.circular(10.0),
                                                 borderSide: const BorderSide(
-                                                  color: Color(0xFFFF6C37),
+                                                  color: Color(0xFF2962FF),
                                                   width: 1.0,
                                                 ),
                                               ),
@@ -237,7 +237,7 @@ class SignUpFormState extends State<SignUpForm> {
                                                   style: TextStyle(
                                                     fontWeight: FontWeight.bold,
                                                     fontSize: 14.0,
-                                                    color: Color(0xFFFF6C37),
+                                                    color: Color(0xFF2962FF),
                                                     decoration: TextDecoration
                                                         .underline,
                                                   ),
@@ -254,7 +254,7 @@ class SignUpFormState extends State<SignUpForm> {
                                               },
                                               style: ElevatedButton.styleFrom(
                                                 backgroundColor:
-                                                    const Color(0xFFFF6C37),
+                                                    const Color(0xFF2962FF),
                                                 shape: RoundedRectangleBorder(
                                                   borderRadius:
                                                       BorderRadius.circular(

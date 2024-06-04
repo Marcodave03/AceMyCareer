@@ -129,7 +129,7 @@ class _AccountPageState extends State<AccountPage> {
             SizedBox(height: 20),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xFFC4084F),
+                backgroundColor: Color(0xFF2962FF),
                 foregroundColor: Colors.white,
               ),
               onPressed: _editProfile,

@@ -29,7 +29,7 @@ class PercentageCircle extends StatelessWidget {
               child: Text(
                 '${(percentage * 100).toInt()}%',
                 style: const TextStyle(
-                  color: Color(0xFFFF6C37),
+                  color: Color(0xFF2962FF),
                   fontWeight: FontWeight.bold,
                   fontSize: 18,
                 ),
@@ -58,7 +58,7 @@ class PercentageCirclePainter extends CustomPainter {
 
     final sweepAngle = 360 * percentage;
     final arcPaint = Paint()
-      ..color = const Color(0xFFFF6C37)
+      ..color = const Color(0xFF2962FF)
       ..style = PaintingStyle.stroke
       ..strokeWidth = 10.0;
     canvas.drawArc(

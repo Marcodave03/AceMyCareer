@@ -33,7 +33,7 @@ class _PrevInterviewCardState extends State<PrevInterviewCard> {
           // margin: const EdgeInsets.all(25),
           elevation: 0,
           shape: const RoundedRectangleBorder(
-            side: BorderSide(color: Color(0xFFFF6C37), width: 2.0),
+            side: BorderSide(color: Color(0xFF2962FF), width: 2.0),
             borderRadius: BorderRadius.all(Radius.circular(12)),
           ),
           child: Container(
@@ -90,7 +90,7 @@ class _PrevInterviewCardState extends State<PrevInterviewCard> {
                       minHeight: 10,
                       backgroundColor: Colors.grey[300],
                       valueColor:
-                          const AlwaysStoppedAnimation<Color>(Color(0xFFFF6C37)),
+                          const AlwaysStoppedAnimation<Color>(Color(0xFF2962FF)),
                     ),
                   ),
                   )
@@ -117,7 +117,7 @@ class _PrevInterviewCardState extends State<PrevInterviewCard> {
                   Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      color: const Color(0xFFFF6C37),
+                      color: const Color(0xFF2962FF),
                       borderRadius: BorderRadius.circular(
                           200), // Optional: Add borderRadius
                     ),

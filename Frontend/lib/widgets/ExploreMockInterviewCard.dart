@@ -26,7 +26,7 @@ class _ExploreMockInterviewCardState extends State<ExploreMockInterviewCard> {
           // margin: const EdgeInsets.all(16),
           elevation: 0,
           shape: const RoundedRectangleBorder(
-            side: BorderSide(color: Color(0xFFFF6C37), width: 2.0),
+            side: BorderSide(color: Color(0xFF2962FF), width: 2.0),
             borderRadius: BorderRadius.all(Radius.circular(12)),
           ),
           child: Container(
@@ -45,7 +45,7 @@ class _ExploreMockInterviewCardState extends State<ExploreMockInterviewCard> {
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(
-                          color: const Color(0xFFFF6C37), // Border color
+                          color: const Color(0xFF2962FF), // Border color
                           width: 2.0, // Border width
                         ),
                       ),
@@ -208,7 +208,7 @@ class _ExploreMockInterviewCardState extends State<ExploreMockInterviewCard> {
                       // TODO: Implement start interview action
                     },
                     style: TextButton.styleFrom(
-                      backgroundColor: const Color(0xFFFF6C37),
+                      backgroundColor: const Color(0xFF2962FF),
                       foregroundColor: Colors.white, // Text color
                     ),
                     child: const Row(
@@ -228,7 +228,7 @@ class _ExploreMockInterviewCardState extends State<ExploreMockInterviewCard> {
           // margin: const EdgeInsets.all(16),
           elevation: 0,
           shape: const RoundedRectangleBorder(
-            side: BorderSide(color: Color(0xFFFF6C37), width: 2.0),
+            side: BorderSide(color: Color(0xFF2962FF), width: 2.0),
             borderRadius: BorderRadius.all(Radius.circular(12)),
           ),
           child: Container(
@@ -247,7 +247,7 @@ class _ExploreMockInterviewCardState extends State<ExploreMockInterviewCard> {
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(
-                          color: const Color(0xFFFF6C37), // Border color
+                          color: const Color(0xFF2962FF), // Border color
                           width: 2.0, // Border width
                         ),
                       ),
@@ -408,10 +408,9 @@ class _ExploreMockInterviewCardState extends State<ExploreMockInterviewCard> {
                   const Spacer(),
                   TextButton(
                     onPressed: () {
-                      // TODO: Implement start interview action
                     },
                     style: TextButton.styleFrom(
-                      backgroundColor: const Color(0xFFFF6C37),
+                      backgroundColor: const Color(0xFF2962FF),
                       foregroundColor: Colors.white, // Text color
                     ),
                     child: const Row(

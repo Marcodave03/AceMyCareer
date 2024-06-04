@@ -24,7 +24,7 @@ class _AllInterviewCardState extends State<AllInterviewCard> {
           margin: const EdgeInsets.all(25),
           elevation: 0,
           shape: const RoundedRectangleBorder(
-            side: BorderSide(color: Color(0xFFFF6C37), width: 2.0),
+            side: BorderSide(color: Color(0xFF2962FF), width: 2.0),
             borderRadius: BorderRadius.all(Radius.circular(12)),
           ),
           child: Container(
@@ -74,7 +74,7 @@ class _AllInterviewCardState extends State<AllInterviewCard> {
                     value: progressValue,
                     backgroundColor: Colors.grey[300],
                     valueColor:
-                        const AlwaysStoppedAnimation<Color>(Color(0xFFFF6C37)),
+                        const AlwaysStoppedAnimation<Color>(Color(0xFF2962FF)),
                   ),
                 ),
                 const SizedBox(height: 8),

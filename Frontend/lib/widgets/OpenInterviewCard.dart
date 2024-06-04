@@ -20,7 +20,7 @@ class _OpenInterviewCardState extends State<OpenInterviewCard> {
         margin: const EdgeInsets.all(16),
         elevation: 0,
         shape: const RoundedRectangleBorder(
-          side: BorderSide(color: Color(0xFFFF6C37), width: 2.0),
+          side: BorderSide(color: Color(0xFF2962FF), width: 2.0),
           borderRadius: BorderRadius.all(Radius.circular(12)),
         ),
         child: Container(
@@ -35,7 +35,7 @@ class _OpenInterviewCardState extends State<OpenInterviewCard> {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       border: Border.all(
-                        color: const Color(0xFFFF6C37), // Border color
+                        color: const Color(0xFF2962FF), // Border color
                         width: 2.0, // Border width
                       ),
                     ),
@@ -151,7 +151,7 @@ class _OpenInterviewCardState extends State<OpenInterviewCard> {
                 TextButton(
                   onPressed: () {},
                   style: TextButton.styleFrom(
-                    foregroundColor: const Color(0xFFFF6C37), // Text color
+                    foregroundColor: const Color(0xFF2962FF), // Text color
                   ),
                   child: const Row(
                     children: [

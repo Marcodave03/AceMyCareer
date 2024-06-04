@@ -93,8 +93,8 @@ class _ExploreInterviewPageState extends State<ExploreInterviewPage> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(60.0),
                         ),
-                        backgroundColor: Color(0xFFDE545A),
-                        foregroundColor: Color(0xFFB93982),
+                        backgroundColor: Color(0xFF2962FF),
+                        foregroundColor: Color(0xFF2962FF),
                         elevation: 0, // No shadow
                         minimumSize: Size(
                           0,

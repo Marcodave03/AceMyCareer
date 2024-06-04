@@ -40,7 +40,7 @@ class LoginFormState extends State<LoginForm> {
                                       const Color.fromRGBO(255, 255, 255, 0.6),
                                   borderRadius: BorderRadius.circular(16.0),
                                   border: Border.all(
-                                    color: const Color(0xFFC4084F),
+                                    color: const Color(0xFF2962FF),
                                     width: 2.0,
                                   )),
                               child: Padding(
@@ -58,7 +58,7 @@ class LoginFormState extends State<LoginForm> {
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             fontSize: 26.0,
-                                            color: Color(0xFFFF6C37)),
+                                            color: Color(0xFF2962FF)),
                                       ),
                                       const SizedBox(height: 10),
                                       const Text(
@@ -90,7 +90,7 @@ class LoginFormState extends State<LoginForm> {
                                                 borderRadius:
                                                     BorderRadius.circular(10.0),
                                                 borderSide: const BorderSide(
-                                                  color: Color(0xFFFF6C37),
+                                                  color: Color(0xFF2962FF),
                                                   width: 1.0,
                                                 ),
                                               ),
@@ -126,7 +126,7 @@ class LoginFormState extends State<LoginForm> {
                                                 borderRadius:
                                                     BorderRadius.circular(10.0),
                                                 borderSide: const BorderSide(
-                                                  color: Color(0xFFFF6C37),
+                                                  color: Color(0xFF2962FF),
                                                   width: 1.0,
                                                 ),
                                               ),
@@ -178,7 +178,7 @@ class LoginFormState extends State<LoginForm> {
                                                   style: TextStyle(
                                                     fontWeight: FontWeight.bold,
                                                     fontSize: 14.0,
-                                                    color: Color(0xFFFF6C37),
+                                                    color: Color(0xFF2962FF),
                                                     decoration: TextDecoration
                                                         .underline,
                                                   ),
@@ -201,7 +201,7 @@ class LoginFormState extends State<LoginForm> {
                                               },
                                               style: ElevatedButton.styleFrom(
                                                 backgroundColor:
-                                                    const Color(0xFFFF6C37),
+                                                    const Color(0xFF2962FF),
                                                 shape: RoundedRectangleBorder(
                                                   borderRadius:
                                                       BorderRadius.circular(

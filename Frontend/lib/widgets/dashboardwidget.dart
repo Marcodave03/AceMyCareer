@@ -23,8 +23,8 @@ class DashboardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const gradientStartColor = Colors.redAccent;
-    const gradientEndColor = Color(0xFFCE194B);
+    const gradientStartColor = Colors.blueAccent;
+    const gradientEndColor = Color(0xFF2962FF);
 
     return Container(
       decoration: BoxDecoration(

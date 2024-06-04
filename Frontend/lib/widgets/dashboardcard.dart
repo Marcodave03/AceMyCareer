@@ -34,7 +34,7 @@ class _DashboardCardState extends State<DashboardCard> {
           margin: const EdgeInsets.all(25),
           elevation: 0,
           shape: const RoundedRectangleBorder(
-            side: BorderSide(color: Color(0xFFFF6C37)),
+            side: BorderSide(color: Color(0xFF2962FF)),
             borderRadius: BorderRadius.all(Radius.circular(12)),
           ),
           child: Container(
@@ -91,7 +91,7 @@ class _DashboardCardState extends State<DashboardCard> {
                       minHeight: 10,
                       backgroundColor: Colors.grey[300],
                       valueColor:
-                          const AlwaysStoppedAnimation<Color>(Color(0xFFFF6C37)),
+                          const AlwaysStoppedAnimation<Color>(Color(0xFF2962FF)),
                     ),
                   ),
                   )
@@ -118,7 +118,7 @@ class _DashboardCardState extends State<DashboardCard> {
                   Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      color: const Color(0xFFFF6C37),
+                      color: const Color(0xFF2962FF),
                       borderRadius: BorderRadius.circular(
                           4.0), // Optional: Add borderRadius
                     ),

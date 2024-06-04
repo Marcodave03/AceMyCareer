@@ -27,7 +27,7 @@ class _CoverLetterFeedbackPageState extends State<CoverLetterFeedbackPage> {
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back_ios_new,
-            color: Color(0xFFFF6C37),
+            color: Color(0xFF2962FF),
           ),
           onPressed: () => Get.toNamed('/coverLetterPage')
         ),
@@ -60,13 +60,13 @@ class _CoverLetterFeedbackPageState extends State<CoverLetterFeedbackPage> {
               const SizedBox(height: 10),
               const Text(
                 "Feedback for your Resume :",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFFFF6C37)),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFF2962FF)),
               ),
               const SizedBox(height: 20,),
               Container(
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                  border: Border.all(color: const Color(0xFFFF6C37), width: 2),
+                  border: Border.all(color: const Color(0xFF2962FF), width: 2),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Column(
