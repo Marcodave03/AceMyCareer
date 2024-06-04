@@ -20,6 +20,7 @@ func CreateUserHandler(db *sql.DB) *userHandler {
 	}
 }
 
+// Users {{{
 // URL : api/users
 func (s *userHandler) HandleUsers(w http.ResponseWriter, r *http.Request) {
     utils.EnableCors(&w)
@@ -128,10 +129,7 @@ func handleUserByUsernameGet(w http.ResponseWriter, r *http.Request, db *sql.DB)
         http.Error(w, err.Error(), http.StatusBadRequest)
         return
     }
-}
+}// }}}
 
-func HandleProfilePictureFileServer() {
-
-}
 
 
