@@ -42,20 +42,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // materialApp -> Get
     return GetMaterialApp(
       initialBinding: BindingsBuilder(() {
         Get.put(UserProvider());
       }),
       initialRoute: '/',
-      home: Home(),
+      home: SplashScreen(),
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
         textTheme: GoogleFonts.dmSansTextTheme(
           Theme.of(context).textTheme,
         ),
       ),
-      // ini buat middleware, route harus begini pake Get
       getPages: [
         GetPage(
           name: '/',
@@ -100,7 +98,6 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: '/coverLetterFeedbackPage',
           page: () {
-            // Assuming the feedback text is passed as a string argument
             final String feedbackText = Get.arguments as String;
             return CoverLetterFeedbackPage(feedbackText: feedbackText);
           },
@@ -108,12 +105,9 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: '/feedbackPage',
           page: () {
-            // Assuming the feedback text is passed as a string argument
-            // final String interviewFeedbackText = Get.arguments as String;
             return FeedbackPage(conversationData: []);
           },
         ),
-        // Other routes :
       ],
       debugShowCheckedModeBanner: false,
     );

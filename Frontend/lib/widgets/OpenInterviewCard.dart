@@ -35,8 +35,8 @@ class _OpenInterviewCardState extends State<OpenInterviewCard> {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       border: Border.all(
-                        color: const Color(0xFF2962FF), // Border color
-                        width: 2.0, // Border width
+                        color: const Color(0xFF2962FF), 
+                        width: 2.0, 
                       ),
                     ),
                     child: CircleAvatar(
@@ -103,7 +103,6 @@ class _OpenInterviewCardState extends State<OpenInterviewCard> {
                   children: <Widget>[
                     SizedBox(
                       height: 32,
-                      // Set the desired width  // Set the desired height
                       child: TextButton(
                         onPressed: () {
                           // do something...
@@ -122,7 +121,6 @@ class _OpenInterviewCardState extends State<OpenInterviewCard> {
                         width: 10, thickness: 1, color: Colors.transparent),
                     SizedBox(
                       height: 30,
-                      // Set the desired width  // Set the desired height
                       child: TextButton(
                         onPressed: () {
                           // do something ...

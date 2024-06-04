@@ -27,8 +27,6 @@ class _DashboardCardState extends State<DashboardCard> {
   @override
   Widget build(BuildContext context) {
     return Stack(alignment: const Alignment(0.6, 0.6), children: [
-      // pake stack supaya iconnya ada di atas cardnya
-      // Add icon nya disini
 
       Card(
           margin: const EdgeInsets.all(25),
@@ -40,7 +38,6 @@ class _DashboardCardState extends State<DashboardCard> {
           child: Container(
             padding: const EdgeInsets.all(16.0),
             width: 300,
-            // borderRadius: BorderRadius.circular(10.0) ,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
@@ -77,15 +74,13 @@ class _DashboardCardState extends State<DashboardCard> {
                   child: Container(
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: Colors.black, // Set the border color
-                        width: 2.0, // Set the border width
+                        color: Colors.black, 
+                        width: 2.0, 
                       ),
-                      borderRadius: BorderRadius.circular(10), // Set the border radius
+                      borderRadius: BorderRadius.circular(10), 
                     ),
                     child: ClipRRect(
-                    // Wrap LinearProgressIndicator with ClipRRect
                     borderRadius: BorderRadius.circular(10.0),
-                    // Adjust the radius as needed
                     child: LinearProgressIndicator(
                       value: widget.progressValue,
                       minHeight: 10,
@@ -99,7 +94,6 @@ class _DashboardCardState extends State<DashboardCard> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 16.0),
-                  // Adjust the left margin as needed
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -120,7 +114,7 @@ class _DashboardCardState extends State<DashboardCard> {
                     decoration: BoxDecoration(
                       color: const Color(0xFF2962FF),
                       borderRadius: BorderRadius.circular(
-                          4.0), // Optional: Add borderRadius
+                          4.0), 
                     ),
                     child: TextButton(
                       child: const Text('Try Again',
@@ -133,11 +127,9 @@ class _DashboardCardState extends State<DashboardCard> {
                     ),
                   ),
                 ])
-                //const SizedBox(width: 7)
               ],
             ),
           )),
-      // Image.asset('images/iconCode.svg'),
     ]);
   }
 }

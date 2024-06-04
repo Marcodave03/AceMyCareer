@@ -21,10 +21,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  // 0 = Home Page
-  int _selectedIndex = 0;
+  int _selectedIndex = 0; // Homepage
 
-  // for bottom navbar navigation
   void _onNavBarTap(int index) {
     setState(() {
       _selectedIndex = index;

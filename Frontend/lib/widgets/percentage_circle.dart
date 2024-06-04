@@ -16,7 +16,7 @@ class PercentageCircle extends StatelessWidget {
             shape: BoxShape.circle,
             boxShadow: [
               BoxShadow(
-                color: Colors.grey.withOpacity(0.8), // Shadow color
+                color: Colors.grey.withOpacity(0.8), 
                 spreadRadius: 3,
                 blurRadius: 5,
                 offset: const Offset(5, 5),
@@ -68,12 +68,6 @@ class PercentageCirclePainter extends CustomPainter {
       false,
       arcPaint,
     );
-
-    // final borderPaint = Paint()
-    //   ..color = const Color(0xFFFF6C37)
-    //   ..style = PaintingStyle.stroke
-    //   ..strokeWidth = 2.0;
-    // canvas.drawCircle(center, radius, borderPaint);
   }
 
   @override
@@ -88,7 +82,7 @@ void main() {
       home: Scaffold(
         appBar: AppBar(title: const Text('Percentage Circle')),
         body: const Center(
-          child: PercentageCircle(percentage: 0.09), // Example with 9%
+          child: PercentageCircle(percentage: 0.09), 
         ),
       ),
     ),

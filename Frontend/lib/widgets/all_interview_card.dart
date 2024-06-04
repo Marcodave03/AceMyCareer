@@ -6,7 +6,6 @@ void main() {
   runApp(const MaterialApp(home: AllInterviewCard()));
 }
 
-
 class AllInterviewCard extends StatefulWidget {
   const AllInterviewCard({super.key});
 
@@ -64,11 +63,11 @@ class _AllInterviewCardState extends State<AllInterviewCard> {
                 Container(
                   decoration: BoxDecoration(
                     border: Border.all(
-                      color: Colors.black, // Set the border color
-                      width: 2.0, // Set the border width
+                      color: Colors.black, 
+                      width: 2.0, 
                     ),
                     borderRadius:
-                        BorderRadius.circular(10), // Set the border radius
+                        BorderRadius.circular(10), 
                   ),
                   child: LinearProgressIndicator(
                     value: progressValue,
@@ -82,7 +81,6 @@ class _AllInterviewCardState extends State<AllInterviewCard> {
                   alignment: Alignment.centerRight,
                   child: TextButton(
                     onPressed: () {
-                      // TODO: Implement view feedback action
                     },
                     child: const Row(
                       mainAxisSize: MainAxisSize.min,

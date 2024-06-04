@@ -34,17 +34,17 @@ class CustomExpansionTile extends StatelessWidget {
           iconColor: Colors.white,
           collapsedIconColor: Colors.white,
           backgroundColor: const Color(
-              0xFF2962FF), // Ensures the same background for the tile header
+              0xFF2962FF), 
           childrenPadding: EdgeInsets.zero,
           tilePadding: const EdgeInsets.symmetric(horizontal: 16.0),
           children: [
             Container(
-              color: Colors.white, // Background color when expanded
+              color: Colors.white, 
               padding: const EdgeInsets.all(16.0),
               child: Text(
                 content,
                 style: const TextStyle(
-                  color: Colors.black, // Text color for the content
+                  color: Colors.black, 
                 ),
               ),
             ),

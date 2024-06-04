@@ -1,13 +1,6 @@
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
 
-/*
-void main() {
-  runApp(MaterialApp(home: ExploreMockInterviewCard()));
-}
-
- */
-
 class ExploreMockInterviewCard extends StatefulWidget {
   const ExploreMockInterviewCard({super.key});
 
@@ -23,7 +16,6 @@ class _ExploreMockInterviewCardState extends State<ExploreMockInterviewCard> {
         child: Column(
       children: [
          Card(
-          // margin: const EdgeInsets.all(16),
           elevation: 0,
           shape: const RoundedRectangleBorder(
             side: BorderSide(color: Color(0xFF2962FF), width: 2.0),
@@ -36,11 +28,9 @@ class _ExploreMockInterviewCardState extends State<ExploreMockInterviewCard> {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 Row(
-                  // crossAxisAlignment: CrossAxisAlignment.,
                   children: <Widget>[
                     Container(
-                      width:
-                          50.0, // Set the width and height to make the circle larger
+                      width:50.0,
                       height: 50.0,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
@@ -66,7 +56,6 @@ class _ExploreMockInterviewCardState extends State<ExploreMockInterviewCard> {
                               Expanded(
                                 child: SizedBox(
                                   height: 28,
-                                  // Set the desired width  // Set the desired height
                                   child: TextButton(
                                     onPressed: () {
                                       // do something ...
@@ -89,7 +78,6 @@ class _ExploreMockInterviewCardState extends State<ExploreMockInterviewCard> {
                               Expanded(
                                 child: SizedBox(
                                   height: 28,
-                                  // Set the desired width  // Set the desired height
                                   child: TextButton(
                                     onPressed: () {
                                       // do something ...
@@ -117,7 +105,6 @@ class _ExploreMockInterviewCardState extends State<ExploreMockInterviewCard> {
                             Expanded(
                               child: SizedBox(
                                 height: 28,
-                                // Set the desired width  // Set the desired height
                                 child: TextButton(
                                   onPressed: () {
                                     // do something ...
@@ -225,7 +212,6 @@ class _ExploreMockInterviewCardState extends State<ExploreMockInterviewCard> {
         ),
         SizedBox(height: 10),
         Card(
-          // margin: const EdgeInsets.all(16),
           elevation: 0,
           shape: const RoundedRectangleBorder(
             side: BorderSide(color: Color(0xFF2962FF), width: 2.0),
@@ -238,17 +224,16 @@ class _ExploreMockInterviewCardState extends State<ExploreMockInterviewCard> {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 Row(
-                  // crossAxisAlignment: CrossAxisAlignment.,
                   children: <Widget>[
                     Container(
                       width:
-                          50.0, // Set the width and height to make the circle larger
+                          50.0, 
                       height: 50.0,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(
-                          color: const Color(0xFF2962FF), // Border color
-                          width: 2.0, // Border width
+                          color: const Color(0xFF2962FF), 
+                          width: 2.0, 
                         ),
                       ),
                       child: CircleAvatar(
@@ -268,7 +253,6 @@ class _ExploreMockInterviewCardState extends State<ExploreMockInterviewCard> {
                               Expanded(
                                 child: SizedBox(
                                   height: 28,
-                                  // Set the desired width  // Set the desired height
                                   child: TextButton(
                                     onPressed: () {
                                       // do something ...
@@ -291,7 +275,6 @@ class _ExploreMockInterviewCardState extends State<ExploreMockInterviewCard> {
                               Expanded(
                                 child: SizedBox(
                                   height: 28,
-                                  // Set the desired width  // Set the desired height
                                   child: TextButton(
                                     onPressed: () {
                                       // do something ...
@@ -319,7 +302,6 @@ class _ExploreMockInterviewCardState extends State<ExploreMockInterviewCard> {
                               Expanded(
                                 child: SizedBox(
                                   height: 28,
-                                  // Set the desired width  // Set the desired height
                                   child: TextButton(
                                     onPressed: () {
                                       // do something ...
@@ -411,7 +393,7 @@ class _ExploreMockInterviewCardState extends State<ExploreMockInterviewCard> {
                     },
                     style: TextButton.styleFrom(
                       backgroundColor: const Color(0xFF2962FF),
-                      foregroundColor: Colors.white, // Text color
+                      foregroundColor: Colors.white, 
                     ),
                     child: const Row(
                       children: [

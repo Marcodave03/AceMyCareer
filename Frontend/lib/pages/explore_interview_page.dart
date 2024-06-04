@@ -78,7 +78,7 @@ class _ExploreInterviewPageState extends State<ExploreInterviewPage> {
                 Container(
                   width: 129,
                   child: SizedBox(
-                    width: double.infinity, // Expand the SizedBox to fill the container width
+                    width: double.infinity, 
                     child: ElevatedButton(
                       onPressed: () {
                         Navigator.push(
@@ -95,16 +95,16 @@ class _ExploreInterviewPageState extends State<ExploreInterviewPage> {
                         ),
                         backgroundColor: Color(0xFF2962FF),
                         foregroundColor: Color(0xFF2962FF),
-                        elevation: 0, // No shadow
+                        elevation: 0, 
                         minimumSize: Size(
                           0,
                           0,
-                        ), // Allow the button to be as small as needed
+                        ), 
                         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       ),
                       child: Expanded(
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center, // Center the text horizontally
+                          mainAxisAlignment: MainAxisAlignment.center, 
                           children: [
                             Expanded(
                               child: Text(
@@ -117,15 +117,12 @@ class _ExploreInterviewPageState extends State<ExploreInterviewPage> {
                                 textAlign: TextAlign.center,
                               ),
                             ),
-
                           ],
                         ),
                       ),
-
                     ),
                   ),
                 ),
-
                 SizedBox(height: 20),
               ],
             )

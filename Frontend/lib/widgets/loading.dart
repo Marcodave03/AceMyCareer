@@ -17,13 +17,11 @@ class _LoadingIndicatorState extends State<LoadingIndicator> {
   void initState() {
     super.initState();
 
-    // wait for the gpt to generate feedback
     Future.delayed(const Duration(seconds: 10), () {
       setState(() {
         isLoading = false;
       });
     });
-    // Navigator.of(context).pushNamed('/coverLetterFeedbackPage');
   }
 
   @override

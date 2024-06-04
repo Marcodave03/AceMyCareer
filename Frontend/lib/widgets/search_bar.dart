@@ -177,9 +177,8 @@ class SearchBarState extends State<SearchBarInterview> {
               child: ListTile(
                 title: Text(interviewTypes[index]),
                 trailing: Checkbox(
-                  value: false, // Provide the value based on the checked state
+                  value: false, 
                   onChanged: (bool? value) {
-                    // Handle checkbox state change
                   },
                 ),
               ),

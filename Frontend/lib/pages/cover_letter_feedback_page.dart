@@ -3,18 +3,9 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-/*
-void main() {
-  runApp(const MaterialApp(home: CoverLetterFeedbackPage()));
-}
-
- */
-
 class CoverLetterFeedbackPage extends StatefulWidget {
   final String feedbackText; // Added to accept feedback text
-
   const CoverLetterFeedbackPage({Key? key, required this.feedbackText}) : super(key: key);
-
   @override
   State<CoverLetterFeedbackPage> createState() => _CoverLetterFeedbackPageState();
 }
@@ -44,19 +35,6 @@ class _CoverLetterFeedbackPageState extends State<CoverLetterFeedbackPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              /*
-              const Text(
-                "Mock Interview: Mid-Senior Software Engineering",
-                style: TextStyle(fontWeight: FontWeight.w600),
-              ),
-              const SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  // Your PercentageCircle widget and text
-                ],
-              ),
-               */
               const SizedBox(height: 10),
               const Text(
                 "Feedback for your Resume :",
@@ -72,14 +50,12 @@ class _CoverLetterFeedbackPageState extends State<CoverLetterFeedbackPage> {
                 child: Column(
                   children: [
                     Text(
-                      widget.feedbackText, // Display the feedback text
+                      widget.feedbackText, 
                       style: const TextStyle(fontSize: 18),
                     ),
                   ],
                 )
-
               )
-
             ],
           ),
         ),

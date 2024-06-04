@@ -114,7 +114,6 @@ class DashboardWidget extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 16),
-                  // Performance indicators
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
@@ -137,7 +136,6 @@ class DashboardWidget extends StatelessWidget {
       'Technical ability': Colors.pinkAccent,
       'Leadership skills': Colors.orange,
       'Teamwork skills': Colors.amber,
-      // 'Presentation skills': Colors.green,
       'Organizational skills': Colors.purple,
     };
 

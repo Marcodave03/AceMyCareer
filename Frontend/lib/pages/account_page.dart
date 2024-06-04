@@ -18,13 +18,13 @@ class Instructor {
   final String firstName;
   final String lastName;
   final String email;
-  final String imageUrl; // Add imageUrl field
+  final String imageUrl; 
 
   Instructor({
     required this.firstName,
     required this.lastName,
     required this.email,
-    required this.imageUrl, // Initialize imageUrl
+    required this.imageUrl, 
   });
 
   factory Instructor.fromJson(Map<String, dynamic> json) {
@@ -32,7 +32,7 @@ class Instructor {
       firstName: json['firstname'],
       lastName: json['lastname'],
       email: json['email'],
-      imageUrl: json['profile_picture_url'], // Parse imageUrl
+      imageUrl: json['profile_picture_url'], 
     );
   }
 }
@@ -50,7 +50,7 @@ class _AccountPageState extends State<AccountPage> {
       setState(() {
         name = '${instructor.firstName} ${instructor.lastName}';
         email = instructor.email;
-        imageUrl = instructor.imageUrl; // Set imageUrl
+        imageUrl = instructor.imageUrl; 
       });
     }).catchError((error) {
       print('Error fetching user data: $error');
