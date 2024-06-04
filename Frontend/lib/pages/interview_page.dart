@@ -207,49 +207,6 @@ class _InterviewPageState extends State<InterviewPage> {
                 ),
               ),
               const SizedBox(height: 10),
-              Container(
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: const Color(0xFF2962FF),
-                    width: 2.0,
-                  ),
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ListView.builder(
-                      padding: const EdgeInsets.only(
-                        top: 0,
-                        bottom: 0,
-                      ),
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: _industry.length,
-                      itemBuilder: (context, index) {
-                        final industry = _industry[index];
-                        return ListTile(
-                          contentPadding: const EdgeInsets.symmetric(
-                            horizontal: 14,
-                            vertical: 1,
-                          ),
-                          title: Text(industry.name),
-                          dense: true,
-                          trailing: Checkbox(
-                            value: levelcheckboxValues[index],
-                            onChanged: (bool? value) {
-                              setState(() {
-                                levelcheckboxValues[index] = value ?? false;
-                              });
-                            },
-                          ),
-                        );
-                      },
-                    ),
-                  ],
-                ),
-              ),
               PopupMenuButton<String>(
                 child: Container(
                   height: 40,
@@ -299,49 +256,6 @@ class _InterviewPageState extends State<InterviewPage> {
                 ),
               ),
               const SizedBox(height: 10),
-              Container(
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: const Color(0xFF2962FF),
-                    width: 2.0,
-                  ),
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ListView.builder(
-                      padding: const EdgeInsets.only(
-                        top: 0,
-                        bottom: 0,
-                      ),
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: _position.length,
-                      itemBuilder: (context, index) {
-                        final position = _position[index];
-                        return ListTile(
-                          contentPadding: const EdgeInsets.symmetric(
-                            horizontal: 14,
-                            vertical: 1,
-                          ),
-                          title: Text(position.name),
-                          dense: true,
-                          trailing: Checkbox(
-                            value: levelcheckboxValues[index],
-                            onChanged: (bool? value) {
-                              setState(() {
-                                levelcheckboxValues[index] = value ?? false;
-                              });
-                            },
-                          ),
-                        );
-                      },
-                    ),
-                  ],
-                ),
-              ),
               PopupMenuButton<String>(
                 child: Container(
                   height: 40,

@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
         Get.put(UserProvider());
       }),
       initialRoute: '/',
-      home: SplashScreen(),
+      home: ExploreInterviewPage(),
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
         textTheme: GoogleFonts.dmSansTextTheme(
@@ -93,7 +93,7 @@ class MyApp extends StatelessWidget {
         ),
         GetPage(
           name: '/recordPage',
-          page: () => RecordPage(),
+          page: () => RecordPage(),  
         ),
         GetPage(
           name: '/coverLetterFeedbackPage',
