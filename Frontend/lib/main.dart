@@ -17,7 +17,6 @@ import 'package:preform/pages/record.dart';
 import 'package:preform/user_auth/user_provider.dart';
 import 'package:preform/widgets/loading.dart';
 import 'package:provider/provider.dart';
-
 import 'middleware/auth_middleware.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
