@@ -203,4 +203,84 @@ func deleteIndustries(db *sql.DB, industryName string) error {
     return err
 }
 
+func insertTag(db *sql.DB, tagName string ) error {
+    query := `INSERT INTO interviews.tags (name) VALUES ($1);`
+    _, err := db.Exec(query, tagName)
+    return err
+}
+
+func deleteTag(db *sql.DB, targetTag string) error {
+    query := `DELETE FROM interviews.tags WHERE name = $1;`
+    info, err := db.Exec(query, targetTag)
+    if err != nil {
+        return err
+    }
+    affectedCount, err := info.RowsAffected()
+    if affectedCount == 0 {
+        return fmt.Errorf("Not Found")
+    }
+    return err
+}
+
+func getAllTags(db *sql.DB) ( []interviewTag, error)  {
+    rows, err := db.Query("SELECT * FROM interviews.tags;")
+    if err != nil {
+        return nil, err
+    }
+    defer rows.Close()
+
+    var tags []interviewTag
+    for rows.Next() {
+        var tag interviewTag
+        if err := rows.Scan(&tag.Name); err != nil {
+            return nil, err
+        }
+        tags = append(tags, tag)
+    }
+    if err := rows.Err(); err != nil {
+        return nil, err
+    }
+    return tags, nil
+}
+
+
+func insertRequirements(db *sql.DB, tagName string ) error {
+    query := `INSERT INTO interviews.technical_requirements(name) VALUES ($1);`
+    _, err := db.Exec(query, tagName)
+    return err
+}
+
+func deleteRequirements(db *sql.DB, targetRequirements string) error {
+    query := `DELETE FROM interviews.technical_requirements WHERE name = $1;`
+    info, err := db.Exec(query, targetRequirements)
+    if err != nil {
+        return err
+    }
+    affectedCount, err := info.RowsAffected()
+    if affectedCount == 0 {
+        return fmt.Errorf("Not Found")
+    }
+    return err
+}
+
+func getAllRequirements(db *sql.DB) ( []interviewRequirements, error)  {
+    rows, err := db.Query("SELECT * FROM interviews.technical_requirements;")
+    if err != nil {
+        return nil, err
+    }
+    defer rows.Close()
+
+    var requirements []interviewRequirements
+    for rows.Next() {
+        var tag interviewRequirements
+        if err := rows.Scan(&tag.Name); err != nil {
+            return nil, err
+        }
+        requirements = append(requirements, tag)
+    }
+    if err := rows.Err(); err != nil {
+        return nil, err
+    }
+    return requirements, nil
+}
 

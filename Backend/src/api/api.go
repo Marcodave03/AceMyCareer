@@ -87,15 +87,15 @@ func (s *ApiServer) handleUploadImages(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func (s *ApiServer) createAllTables(w http.ResponseWriter, r *http.Request) {
+func (s *ApiServer) createAllTables() {
 
     if err := users.CreateTableUsers(s.db); err != nil {
-        http.Error(w, err.Error(), http.StatusInternalServerError)
+        log.Fatal(err.Error())
         return
     }
 
     if err := interviews.CreateTableInterviews(s.db); err != nil {
-        http.Error(w, err.Error(), http.StatusInternalServerError)
+        log.Fatal(err.Error())
         return
     }
 }
@@ -103,10 +103,9 @@ func (s *ApiServer) createAllTables(w http.ResponseWriter, r *http.Request) {
 func (s *ApiServer) setupRoutes() *mux.Router {
 	router := mux.NewRouter()
 
-	router.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) { utils.WriteJson(w, "titit", http.StatusOK) })
+    s.createAllTables()
 
     // Utility
-    router.HandleFunc("/api/utils/create_all_tables", s.createAllTables)
 
 	// Users
 	userHandler := users.CreateUserHandler(s.db)
@@ -118,6 +117,7 @@ func (s *ApiServer) setupRoutes() *mux.Router {
     router.HandleFunc("/api/levels", interviewHandler.HandleLevel)
     router.HandleFunc("/api/industries", interviewHandler.HandleIndustries)
     router.HandleFunc("/api/positions", interviewHandler.HandlePositions)
+    router.HandleFunc("/api/tags", interviewHandler.HandleTags)
 
 	// Static File Servers
 	router.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir(os.Getenv("API_STATIC_FILES_DIRECTORY"))))) // images
