@@ -17,7 +17,6 @@ import 'package:preform/pages/record.dart';
 import 'package:preform/user_auth/user_provider.dart';
 import 'package:preform/widgets/loading.dart';
 import 'package:provider/provider.dart';
-
 import 'middleware/auth_middleware.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
@@ -42,20 +41,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // materialApp -> Get
     return GetMaterialApp(
       initialBinding: BindingsBuilder(() {
         Get.put(UserProvider());
       }),
       initialRoute: '/',
-      home: Home(),
+      home: LoginForm(),
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
         textTheme: GoogleFonts.dmSansTextTheme(
           Theme.of(context).textTheme,
         ),
       ),
-      // ini buat middleware, route harus begini pake Get
       getPages: [
         GetPage(
           name: '/',
@@ -95,12 +92,11 @@ class MyApp extends StatelessWidget {
         ),
         GetPage(
           name: '/recordPage',
-          page: () => RecordPage(),
+          page: () => RecordPage(),  
         ),
         GetPage(
           name: '/coverLetterFeedbackPage',
           page: () {
-            // Assuming the feedback text is passed as a string argument
             final String feedbackText = Get.arguments as String;
             return CoverLetterFeedbackPage(feedbackText: feedbackText);
           },
@@ -108,12 +104,9 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: '/feedbackPage',
           page: () {
-            // Assuming the feedback text is passed as a string argument
-            // final String interviewFeedbackText = Get.arguments as String;
             return FeedbackPage(conversationData: []);
           },
         ),
-        // Other routes :
       ],
       debugShowCheckedModeBanner: false,
     );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import '../widgets/bottom_navbar.dart';
 
 void main() {
   runApp(const MaterialApp(home: AccountPage()));
@@ -17,13 +18,13 @@ class Instructor {
   final String firstName;
   final String lastName;
   final String email;
-  final String imageUrl; // Add imageUrl field
+  final String imageUrl; 
 
   Instructor({
     required this.firstName,
     required this.lastName,
     required this.email,
-    required this.imageUrl, // Initialize imageUrl
+    required this.imageUrl, 
   });
 
   factory Instructor.fromJson(Map<String, dynamic> json) {
@@ -31,7 +32,7 @@ class Instructor {
       firstName: json['firstname'],
       lastName: json['lastname'],
       email: json['email'],
-      imageUrl: json['profile_picture_url'], // Parse imageUrl
+      imageUrl: json['profile_picture_url'], 
     );
   }
 }
@@ -40,7 +41,7 @@ class _AccountPageState extends State<AccountPage> {
   int _selectedIndex = 3;
   String name = '';
   String email = '';
-  String imageUrl = ''; // Add imageUrl variable
+  String imageUrl = ''; 
 
   @override
   void initState() {
@@ -49,7 +50,7 @@ class _AccountPageState extends State<AccountPage> {
       setState(() {
         name = '${instructor.firstName} ${instructor.lastName}';
         email = instructor.email;
-        imageUrl = instructor.imageUrl; // Set imageUrl
+        imageUrl = instructor.imageUrl; 
       });
     }).catchError((error) {
       print('Error fetching user data: $error');
@@ -107,7 +108,7 @@ class _AccountPageState extends State<AccountPage> {
               radius: 50,
               backgroundImage: imageUrl.isNotEmpty
                   ? NetworkImage(imageUrl)
-                  : AssetImage('./lib/images/chelsea.jpeg') as ImageProvider,
+                  : AssetImage('') as ImageProvider,
             ),
             SizedBox(height: 20),
             Text(
@@ -128,7 +129,7 @@ class _AccountPageState extends State<AccountPage> {
             SizedBox(height: 20),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xFFC4084F),
+                backgroundColor: Color(0xFF2962FF),
                 foregroundColor: Colors.white,
               ),
               onPressed: _editProfile,
@@ -136,6 +137,10 @@ class _AccountPageState extends State<AccountPage> {
             ),
           ],
         ),
+      ),
+      bottomNavigationBar: BottomNavBar(
+        selectedIndex: _selectedIndex,
+        onItemSelected: _onNavBarTap,
       ),
     );
   }

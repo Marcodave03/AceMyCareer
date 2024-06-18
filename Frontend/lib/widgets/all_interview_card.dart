@@ -6,7 +6,6 @@ void main() {
   runApp(const MaterialApp(home: AllInterviewCard()));
 }
 
-
 class AllInterviewCard extends StatefulWidget {
   const AllInterviewCard({super.key});
 
@@ -15,8 +14,7 @@ class AllInterviewCard extends StatefulWidget {
 }
 
 class _AllInterviewCardState extends State<AllInterviewCard> {
-  double progressValue = 0.5; // Example progress value
-
+  double progressValue = 0.5; 
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -24,7 +22,7 @@ class _AllInterviewCardState extends State<AllInterviewCard> {
           margin: const EdgeInsets.all(25),
           elevation: 0,
           shape: const RoundedRectangleBorder(
-            side: BorderSide(color: Color(0xFFFF6C37), width: 2.0),
+            side: BorderSide(color: Color(0xFF2962FF), width: 2.0),
             borderRadius: BorderRadius.all(Radius.circular(12)),
           ),
           child: Container(
@@ -64,17 +62,17 @@ class _AllInterviewCardState extends State<AllInterviewCard> {
                 Container(
                   decoration: BoxDecoration(
                     border: Border.all(
-                      color: Colors.black, // Set the border color
-                      width: 2.0, // Set the border width
+                      color: Colors.black, 
+                      width: 2.0, 
                     ),
                     borderRadius:
-                        BorderRadius.circular(10), // Set the border radius
+                        BorderRadius.circular(10), 
                   ),
                   child: LinearProgressIndicator(
                     value: progressValue,
                     backgroundColor: Colors.grey[300],
                     valueColor:
-                        const AlwaysStoppedAnimation<Color>(Color(0xFFFF6C37)),
+                        const AlwaysStoppedAnimation<Color>(Color(0xFF2962FF)),
                   ),
                 ),
                 const SizedBox(height: 8),
@@ -82,7 +80,6 @@ class _AllInterviewCardState extends State<AllInterviewCard> {
                   alignment: Alignment.centerRight,
                   child: TextButton(
                     onPressed: () {
-                      // TODO: Implement view feedback action
                     },
                     child: const Row(
                       mainAxisSize: MainAxisSize.min,

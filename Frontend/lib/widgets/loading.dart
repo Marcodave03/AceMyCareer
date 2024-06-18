@@ -17,19 +17,17 @@ class _LoadingIndicatorState extends State<LoadingIndicator> {
   void initState() {
     super.initState();
 
-    // wait for the gpt to generate feedback
     Future.delayed(const Duration(seconds: 10), () {
       setState(() {
         isLoading = false;
       });
     });
-    // Navigator.of(context).pushNamed('/coverLetterFeedbackPage');
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFF6C37),
+      backgroundColor: const Color(0xFF2962FF),
       body: Center(
         child: isLoading
             ? const CircularProgressIndicator(

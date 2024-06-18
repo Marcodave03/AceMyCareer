@@ -113,9 +113,11 @@ func (s *ApiServer) setupRoutes() *mux.Router {
 	router.HandleFunc("/api/users", userHandler.HandleUsers)
 	router.HandleFunc("/api/users/{username}", userHandler.HandleUserByUsername)
 
-    // Levels
+    // interviews
     interviewHandler := interviews.CreateInterviewHandler(s.db)
     router.HandleFunc("/api/levels", interviewHandler.HandleLevel)
+    router.HandleFunc("/api/industries", interviewHandler.HandleIndustries)
+    router.HandleFunc("/api/positions", interviewHandler.HandlePositions)
 
 	// Static File Servers
 	router.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir(os.Getenv("API_STATIC_FILES_DIRECTORY"))))) // images
@@ -132,5 +134,5 @@ func (s *ApiServer) Run() {
 	}
 
 	fmt.Println("Api Server Listening on ", s.ListenAddr)
-	log.Fatal(http.ListenAndServe(s.ListenAddr, s.setupRoutes()))
+	log.Fatal(http.ListenAndServe(s.ListenAddr,s.setupRoutes()))
 }

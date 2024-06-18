@@ -14,14 +14,14 @@ class CustomExpansionTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       shape: RoundedRectangleBorder(
-        side: const BorderSide(color: Color(0xFFFF6C37), width: 2.0),
+        side: const BorderSide(color: Color(0xFF2962FF), width: 2.0),
         borderRadius: BorderRadius.circular(12),
       ),
-      color: const Color(0xFFFF6C37),
+      color: const Color(0xFF2962FF),
       elevation: 2,
       child: Theme(
         data: Theme.of(context).copyWith(
-          dividerColor: const Color(0xFFFF6C37),
+          dividerColor: const Color(0xFF2962FF),
         ),
         child: ExpansionTile(
           title: Text(
@@ -34,17 +34,17 @@ class CustomExpansionTile extends StatelessWidget {
           iconColor: Colors.white,
           collapsedIconColor: Colors.white,
           backgroundColor: const Color(
-              0xFFFF6C37), // Ensures the same background for the tile header
+              0xFF2962FF), 
           childrenPadding: EdgeInsets.zero,
           tilePadding: const EdgeInsets.symmetric(horizontal: 16.0),
           children: [
             Container(
-              color: Colors.white, // Background color when expanded
+              color: Colors.white, 
               padding: const EdgeInsets.all(16.0),
               child: Text(
                 content,
                 style: const TextStyle(
-                  color: Colors.black, // Text color for the content
+                  color: Colors.black, 
                 ),
               ),
             ),

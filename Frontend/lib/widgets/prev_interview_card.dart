@@ -27,26 +27,26 @@ class _PrevInterviewCardState extends State<PrevInterviewCard> {
   @override
   Widget build(BuildContext context) {
     return Stack(alignment: const Alignment(0.6, 0.6), children: [
-      // pake stack supaya iconnya ada di atas cardnya
-      // Add icon nya disini
       Card(
-          // margin: const EdgeInsets.all(25),
           elevation: 0,
           shape: const RoundedRectangleBorder(
-            side: BorderSide(color: Color(0xFFFF6C37), width: 2.0),
+            side: BorderSide(color: Color(0xFF2962FF), width: 2.0),
             borderRadius: BorderRadius.all(Radius.circular(12)),
           ),
           child: Container(
             padding: const EdgeInsets.all(16.0),
-            width: 200,
-            // borderRadius: BorderRadius.circular(10.0) ,
+            width: MediaQuery.of(context).size.width * 0.8, 
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 Row(
                   children: <Widget>[
-                    SvgPicture.asset("lib/images/data_chart_icon.svg"),
-                    const SizedBox(width: 13),
+                    SvgPicture.asset(
+                      "lib/images/dataicon.svg",
+                      width: 50, 
+                      height: 50,
+                      fit: BoxFit.scaleDown,
+                    ),
                   ],
                 ),
                 const Padding(
@@ -76,21 +76,19 @@ class _PrevInterviewCardState extends State<PrevInterviewCard> {
                   child: Container(
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: Colors.black, // Set the border color
-                        width: 2.0, // Set the border width
+                        color: Colors.black, 
+                        width: 2.0,
                       ),
-                      borderRadius: BorderRadius.circular(10), // Set the border radius
+                      borderRadius: BorderRadius.circular(10), 
                     ),
                     child: ClipRRect(
-                    // Wrap LinearProgressIndicator with ClipRRect
                     borderRadius: BorderRadius.circular(10.0),
-                    // Adjust the radius as needed
                     child: LinearProgressIndicator(
                       value: widget.progressValue,
                       minHeight: 10,
                       backgroundColor: Colors.grey[300],
                       valueColor:
-                          const AlwaysStoppedAnimation<Color>(Color(0xFFFF6C37)),
+                          const AlwaysStoppedAnimation<Color>(Color(0xFF2962FF)),
                     ),
                   ),
                   )
@@ -98,7 +96,6 @@ class _PrevInterviewCardState extends State<PrevInterviewCard> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 16.0),
-                  // Adjust the left margin as needed
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -117,9 +114,9 @@ class _PrevInterviewCardState extends State<PrevInterviewCard> {
                   Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      color: const Color(0xFFFF6C37),
+                      color: const Color(0xFF2962FF),
                       borderRadius: BorderRadius.circular(
-                          200), // Optional: Add borderRadius
+                          200),
                     ),
                     child: TextButton(
                       child: const Text('Try Again',
@@ -127,16 +124,13 @@ class _PrevInterviewCardState extends State<PrevInterviewCard> {
                               fontWeight: FontWeight.bold,
                               color: Colors.white)),
                       onPressed: () {
-                        /* ... */
                       },
                     ),
                   ),
                 ])
-                //const SizedBox(width: 7)
               ],
             ),
           )),
-      // Image.asset('images/iconCode.svg'),
     ]);
   }
 }

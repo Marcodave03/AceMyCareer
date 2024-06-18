@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 import '../widgets/bottom_navbar.dart';
+
+void main() {
+  runApp(const MaterialApp(home: InterviewPage()));
+}
 
 class InterviewPage extends StatefulWidget {
   const InterviewPage({Key? key}) : super(key: key);
@@ -10,11 +15,137 @@ class InterviewPage extends StatefulWidget {
   State<InterviewPage> createState() => _InterviewPageState();
 }
 
+class InterviewLevel {
+  final int id;
+  final String name;
+
+  InterviewLevel({
+    required this.id,
+    required this.name,
+  });
+
+  factory InterviewLevel.fromJson(Map<String, dynamic> json) {
+    return InterviewLevel(
+      id: json['id'],
+      name: json['name'],
+    );
+  }
+}
+
+class Position {
+  final int id;
+  final String name;
+  Position({
+    required this.id,
+    required this.name,
+  });
+
+  factory Position.fromJson(Map<String, dynamic> json) {
+    return Position(
+      id: json['id'],
+      name: json['name'],
+    );
+  }
+}
+
+class Industry {
+  final int id;
+  final String name;
+  Industry({
+    required this.id,
+    required this.name,
+  });
+
+  factory Industry.fromJson(Map<String, dynamic> json) {
+    return Industry(
+      id: json['id'],
+      name: json['name'],
+    );
+  }
+}
+
 class _InterviewPageState extends State<InterviewPage> {
-  // 1 = Interview Page
   int _selectedIndex = 1;
 
-  // for bottom navbar navigation
+  List<InterviewLevel> _interviewLevels = [];
+  List<bool> levelcheckboxValues = [];
+  List<Position> _position = [];
+  List<Industry> _industry = [];
+
+  @override
+  void initState() {
+    super.initState();
+    fetchLevelData().then((levels) {
+      setState(() {
+        _interviewLevels = levels;
+        levelcheckboxValues = List<bool>.filled(levels.length, false);
+      });
+    }).catchError((error) {
+      print('Error fetching level data: $error');
+    });
+
+    fetchPosition().then((position) {
+      setState(() {
+        _position = position;
+      });
+    }).catchError((error) {
+      print('Error fetching position data: $error');
+    });
+
+    fetchIndustry().then((industry) {
+      setState(() {
+        _industry = industry;
+      });
+    }).catchError((error) {
+      print('Error fetching industry data: $error');
+    });
+  }
+
+  Future<List<InterviewLevel>> fetchLevelData() async {
+    try {
+      final response = await http.get(Uri.parse('http://localhost:8080/api/levels'));
+      if (response.statusCode == 200) {
+        final List<dynamic> responseData = json.decode(response.body);
+        return responseData.map((levelData) => InterviewLevel.fromJson(levelData)).toList();
+      } else {
+        throw Exception('Failed to load level data. Status code: ${response.statusCode}');
+      }
+    } catch (error) {
+      print('Error fetching level data: $error');
+      rethrow;
+    }
+  }
+
+  Future<List<Position>> fetchPosition() async {
+    try {
+      final response = await http.get(Uri.parse('http://localhost:8080/api/positions'));
+      if (response.statusCode == 200) {
+        final List<dynamic> responseData = json.decode(response.body);
+        return responseData.map((positionData) => Position.fromJson(positionData)).toList();
+      } else {
+        throw Exception('Failed to load position data. Status code: ${response.statusCode}');
+      }
+    } catch (error) {
+      print('Error fetching position data: $error');
+      rethrow;
+    }
+  }
+
+  Future<List<Industry>> fetchIndustry() async {
+    try {
+      final response = await http.get(Uri.parse('http://localhost:8080/api/industries'));
+      if (response.statusCode == 200) {
+        final List<dynamic> responseData = json.decode(response.body);
+        return responseData.map((industryData) => Industry.fromJson(industryData)).toList();
+      } else {
+        throw Exception('Failed to load industry data. Status code: ${response.statusCode}');
+      }
+    } catch (error) {
+      print('Error fetching industry data: $error');
+      rethrow;
+    }
+  }
+
   void _onNavBarTap(int index) {
     setState(() {
       _selectedIndex = index;
@@ -36,8 +167,8 @@ class _InterviewPageState extends State<InterviewPage> {
     }
   }
 
-  late String? _chosenValue = 'Software Engineer';
-  late String? _industryValue = 'Cyber Security';
+  String? _chosenValue;
+  String? _industryValue;
   final List<String> items = [
     'React Js',
     'Flutter',
@@ -45,10 +176,7 @@ class _InterviewPageState extends State<InterviewPage> {
     'PostgreSQL',
     'Oracle'
   ];
-  final List<String> level = ['Internship', 'Entry-Level', 'Mid-Senior Level'];
   final List<bool> checkboxValues = [false, false, false, false, false];
-  final List<bool> levelcheckboxValues = [false, false, false];
-
   final TextEditingController _textFieldController = TextEditingController();
 
   @override
@@ -57,8 +185,7 @@ class _InterviewPageState extends State<InterviewPage> {
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Container(
-          padding: const EdgeInsets.fromLTRB(
-              28.0, 50.0, 28.0, 0), // Adjust top padding
+          padding: const EdgeInsets.fromLTRB(28.0, 50.0, 28.0, 0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -66,7 +193,7 @@ class _InterviewPageState extends State<InterviewPage> {
                 "🎨 Personalized Practice",
                 style: TextStyle(
                   fontSize: 22,
-                  color: Color(0xFFC4084F),
+                  color: Color(0xFF2962FF),
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -86,7 +213,7 @@ class _InterviewPageState extends State<InterviewPage> {
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   decoration: BoxDecoration(
                     border: Border.all(
-                      color: const Color(0xFFC4084F),
+                      color: const Color(0xFF2962FF),
                       width: 2.0,
                     ),
                     borderRadius: BorderRadius.circular(8.0),
@@ -108,29 +235,18 @@ class _InterviewPageState extends State<InterviewPage> {
                   });
                 },
                 itemBuilder: (BuildContext context) {
-                  return <PopupMenuEntry<String>>[
-                    const PopupMenuItem<String>(
-                      value: 'IT Consulting',
-                      child: Text('IT Consulting'),
-                    ),
-                    const PopupMenuItem<String>(
-                      value: 'Cyber Security',
-                      child: Text('Cyber Security'),
-                    ),
-                    const PopupMenuItem<String>(
-                      value: 'Cloud Computing',
-                      child: Text('Cloud Computing'),
-                    ),
-                    const PopupMenuItem<String>(
-                      value: 'Big Data',
-                      child: Text('Big Data'),
-                    ),
-                  ];
+                  return _industry.isEmpty
+                      ? [const PopupMenuItem<String>(
+                          value: null,
+                          child: Text('Loading...'),
+                        )]
+                      : _industry.map((industry) => PopupMenuItem<String>(
+                          value: industry.name,
+                          child: Text(industry.name),
+                        )).toList();
                 },
               ),
-              const SizedBox(
-                height: 10,
-              ),
+              const SizedBox(height: 10),
               const Text(
                 "Position",
                 style: TextStyle(
@@ -146,7 +262,7 @@ class _InterviewPageState extends State<InterviewPage> {
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   decoration: BoxDecoration(
                     border: Border.all(
-                      color: const Color(0xFFC4084F),
+                      color: const Color(0xFF2962FF),
                       width: 2.0,
                     ),
                     borderRadius: BorderRadius.circular(8.0),
@@ -168,28 +284,15 @@ class _InterviewPageState extends State<InterviewPage> {
                   });
                 },
                 itemBuilder: (BuildContext context) {
-                  return <PopupMenuEntry<String>>[
-                    const PopupMenuItem<String>(
-                      value: 'Front-End Developer',
-                      child: Text('Front-End Developer'),
-                    ),
-                    const PopupMenuItem<String>(
-                      value: 'Back-End Developer',
-                      child: Text('Back-End Developer'),
-                    ),
-                    const PopupMenuItem<String>(
-                      value: 'Software Engineer',
-                      child: Text('Software Engineer'),
-                    ),
-                    const PopupMenuItem<String>(
-                      value: 'Data Analyst',
-                      child: Text('Data Analyst'),
-                    ),
-                    const PopupMenuItem<String>(
-                      value: 'AI Engineer',
-                      child: Text('AI Engineer'),
-                    ),
-                  ];
+                  return _position.isEmpty
+                      ? [const PopupMenuItem<String>(
+                          value: null,
+                          child: Text('Loading...'),
+                        )]
+                      : _position.map((position) => PopupMenuItem<String>(
+                          value: position.name,
+                          child: Text(position.name),
+                        )).toList();
                 },
               ),
               const SizedBox(height: 10),
@@ -204,7 +307,7 @@ class _InterviewPageState extends State<InterviewPage> {
               Container(
                 decoration: BoxDecoration(
                   border: Border.all(
-                    color: const Color(0xFFC4084F),
+                    color: const Color(0xFF2962FF),
                     width: 2.0,
                   ),
                   borderRadius: BorderRadius.circular(8.0),
@@ -223,9 +326,7 @@ class _InterviewPageState extends State<InterviewPage> {
                           contentPadding: const EdgeInsets.symmetric(
                               horizontal: 14, vertical: 1),
                           title: Text(items[index]),
-                          dense: true, // Make ListTile dense
-                          visualDensity:
-                              const VisualDensity(horizontal: 0, vertical: -4),
+                          dense: true,
                           trailing: Checkbox(
                             value: checkboxValues[index],
                             onChanged: (bool? value) {
@@ -240,12 +341,12 @@ class _InterviewPageState extends State<InterviewPage> {
                     Container(
                       alignment: Alignment.center,
                       child: Padding(
-                        padding: const EdgeInsets.only(left: 40, right: 40, bottom : 10),
+                        padding: const EdgeInsets.only(left: 40, right: 40, bottom: 10),
                         child: ElevatedButton(
                           onPressed: () {},
                           style: ElevatedButton.styleFrom(
                             minimumSize: const Size(double.infinity, 30),
-                            backgroundColor: const Color(0xFFC4084F),
+                            backgroundColor: const Color(0xFF2962FF),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10.0),
                             ),
@@ -286,7 +387,7 @@ class _InterviewPageState extends State<InterviewPage> {
               Container(
                 decoration: BoxDecoration(
                   border: Border.all(
-                    color: const Color(0xFFC4084F),
+                    color: const Color(0xFF2962FF),
                     width: 2.0,
                   ),
                   borderRadius: BorderRadius.circular(8.0),
@@ -297,21 +398,21 @@ class _InterviewPageState extends State<InterviewPage> {
                   children: [
                     ListView.builder(
                       padding: const EdgeInsets.only(
-                          top: 0, bottom: 0), // Adjust top and bottom padding
+                        top: 0,
+                        bottom: 0,
+                      ),
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
-                      itemCount: level.length,
+                      itemCount: _interviewLevels.length,
                       itemBuilder: (context, index) {
+                        final interviewLevel = _interviewLevels[index];
                         return ListTile(
                           contentPadding: const EdgeInsets.symmetric(
-                              horizontal: 14,
-                              vertical:
-                                  1), // Remove horizontal and vertical padding
-                          title: Text(level[index]),
-                          dense: true, // Make ListTile dense
-                          visualDensity: const VisualDensity(
-                              horizontal: 0,
-                              vertical: -4), // Adjust vertical density
+                            horizontal: 14,
+                            vertical: 1,
+                          ),
+                          title: Text(interviewLevel.name),
+                          dense: true,
                           trailing: Checkbox(
                             value: levelcheckboxValues[index],
                             onChanged: (bool? value) {
@@ -341,13 +442,13 @@ class _InterviewPageState extends State<InterviewPage> {
                   labelText: 'Add your work experience...',
                   focusedBorder: OutlineInputBorder(
                       borderSide: const BorderSide(
-                        color: Color(0xFFC4084F),
+                        color: Color(0xFF2962FF),
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(8.0)),
                   enabledBorder: OutlineInputBorder(
                       borderSide: const BorderSide(
-                          color: Color(0xFFC4084F), width: 2.0),
+                          color: Color(0xFF2962FF), width: 2.0),
                       borderRadius: BorderRadius.circular(8.0)),
                 ),
               ),
@@ -359,7 +460,7 @@ class _InterviewPageState extends State<InterviewPage> {
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size(double.infinity, 35),
                   alignment: Alignment.centerLeft,
-                  backgroundColor: const Color(0xFFC4084F),
+                  backgroundColor: const Color(0xFF2962FF),
                 ),
                 child: const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

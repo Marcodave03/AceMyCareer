@@ -21,10 +21,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  // 0 = Home Page
-  int _selectedIndex = 0;
+  int _selectedIndex = 0; 
 
-  // for bottom navbar navigation
   void _onNavBarTap(int index) {
     setState(() {
       _selectedIndex = index;
@@ -51,7 +49,7 @@ class _HomeState extends State<Home> {
     int score = 90;
     double percent = score / 100;
     Color progressColor =
-    Color.lerp(const Color(0xFFCE194B), const Color(0xFFFF6C37), percent)!;
+    Color.lerp(const Color(0xFF2962FF), const Color(0xFF2962FF), percent)!;
     final List<Map<String, String>> qaPairs = [
       {
         'question':
@@ -104,7 +102,7 @@ class _HomeState extends State<Home> {
                   style: TextStyle(
                     fontSize: 24.0,
                     fontWeight: FontWeight.bold,
-                    color: Color(0xFFFF6C37),
+                    color: Color(0xFF2962FF),
                   ),
                 ),
               ),
@@ -113,7 +111,7 @@ class _HomeState extends State<Home> {
               child: ListView(
                 children: [
                   DashboardWidget(
-                    userName: 'Chelsea Ng',
+                    userName: 'Marco Reyes',
                     latestScore: 'Latest Score',
                     interviewType: 'HR Interview',
                     company: 'Azure Microsoft',
@@ -139,7 +137,7 @@ class _HomeState extends State<Home> {
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFFFF6C37),
+                        backgroundColor: const Color(0xFF2962FF),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(200.0),
                         ),
@@ -175,6 +173,19 @@ class _HomeState extends State<Home> {
                           progressValue: 50, numberPercentage: 20),
                     ],
                   ),
+                  Row(
+                    children: [
+                      PrevInterviewCard(
+                          progressValue: 50, numberPercentage: 20),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      PrevInterviewCard(
+                          progressValue: 50, numberPercentage: 20),
+                    ],
+                  ),
+                 
                 ],
               ),
             ),
