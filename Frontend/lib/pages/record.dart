@@ -20,7 +20,7 @@ void main() {
 }
 
 class RecordPage extends StatefulWidget {
-  late final String feedbackTextFromGPT; // Added to accept feedback text
+  late final String feedbackTextFromGPT; 
 
   @override
   RecordPageState createState() => RecordPageState();
@@ -162,7 +162,7 @@ void _setupTts() {
         ),
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min, // Use min size for the column
+          mainAxisSize: MainAxisSize.min,
           children: <Text>[
             Text(
               'Interview Session',
@@ -171,13 +171,12 @@ void _setupTts() {
                   fontSize: 22,
                   color: Color(0xFF2962FF)),
             ),
-            // You can add more Text widgets here
             Text(
-              'Software Engineer', // Additional text example
+              'Software Engineer', 
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
-                  color: Colors.black), // Example style
+                  color: Colors.black), 
             ),
           ],
         ),
@@ -185,7 +184,6 @@ void _setupTts() {
       body: Column(
         
         children: [
-          // Your existing UI components
           Expanded(
             flex: 2,
             child: Padding(
@@ -232,7 +230,7 @@ void _setupTts() {
                       if (snapshot.hasData) {
                         _textToSpeechForGPT(snapshot.data!);
                         return Text(
-                          snapshot.data!, // Use the data
+                          snapshot.data!, 
                           style: TextStyle(color: Colors.black),
                         );
                       } else if (snapshot.hasError) {
@@ -259,7 +257,6 @@ void _setupTts() {
                 color: Color.fromARGB(255, 14, 35, 154),
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(color: Color(0xFF2962FF))),
-            // BorderRadius()
             child: Container(
               padding: EdgeInsets.all(16),
               child: Text(
@@ -336,7 +333,7 @@ void _setupTts() {
 
 class Message {
   final String content;
-  final String role; // 'user' or 'system'
+  final String role; 
   final DateTime timestamp;
 
   Message({required this.content, required this.role, required this.timestamp});

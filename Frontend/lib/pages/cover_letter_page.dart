@@ -90,7 +90,6 @@ class _CoverLetterPageState extends State<CoverLetterPage> {
         Get.to(
             () => CoverLetterFeedbackPage(feedbackText: textFeedbackFromGPT));
       } catch (e) {
-        // if there are error
         print(e);
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
@@ -111,10 +110,8 @@ class _CoverLetterPageState extends State<CoverLetterPage> {
     });
   }
 
-// 2 = Cover Letter Page
   int _selectedIndex = 2;
 
-// for bottom navbar navigation
   void _onNavBarTap(int index) {
     setState(() {
       _selectedIndex = index;

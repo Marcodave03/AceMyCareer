@@ -14,8 +14,7 @@ class AllInterviewCard extends StatefulWidget {
 }
 
 class _AllInterviewCardState extends State<AllInterviewCard> {
-  double progressValue = 0.5; // Example progress value
-
+  double progressValue = 0.5; 
   @override
   Widget build(BuildContext context) {
     return Center(

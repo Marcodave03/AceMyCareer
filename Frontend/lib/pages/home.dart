@@ -21,7 +21,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  int _selectedIndex = 0; // Homepage
+  int _selectedIndex = 0; 
 
   void _onNavBarTap(int index) {
     setState(() {
